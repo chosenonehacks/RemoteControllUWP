@@ -1,0 +1,24 @@
+﻿<UserControl
+    x:Class="RemoteController.Views.UserControls.PilotBottomUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RemoteController.Views.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Viewbox>
+            <RelativePanel>
+                <Button Name="ButtonBack" Content="--"  RelativePanel.AlignLeftWithPanel="True" MinWidth="40"/>
+                <Button Name="ButtonVolDown" Content="Vol -"   RelativePanel.RightOf="ButtonBack" MinWidth="90"/>
+                <Button Name="ButtonVolUp" Content="Vol +"   RelativePanel.RightOf="ButtonVolDown" MinWidth="90" />
+
+                <Button Name="ButtonRed" Content=""  RelativePanel.Below="ButtonBack" BorderBrush="Red" MinWidth="55"/>
+                <Button Name="ButtonGreen" Content="" RelativePanel.AlignBottomWithPanel="True"  RelativePanel.RightOf="ButtonRed"  BorderBrush="Green" MinWidth="55"/>
+                <Button Name="ButtonYellow" Content="" RelativePanel.AlignBottomWithPanel="True"  RelativePanel.RightOf="ButtonGreen"  BorderBrush="Yellow" MinWidth="55"/>
+                <Button Name="ButtonBlue" Content="" RelativePanel.AlignBottomWithPanel="True"  RelativePanel.RightOf="ButtonYellow"  BorderBrush="Blue" MinWidth="55"/>
+            </RelativePanel>
+        </Viewbox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,32 @@
+﻿<UserControl
+    x:Class="RemoteController.Views.UserControls.PilotNaviUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RemoteController.Views.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Viewbox>
+            <RelativePanel>
+                <Button Name="ButtonUp"   RelativePanel.AlignHorizontalCenterWithPanel="True" MinWidth="160">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE96D;"  />
+                </Button>
+                <Button Name="ButtonLeft" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="ButtonUp" MinWidth="50" >
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE96F;"  />
+                </Button>
+
+                <Button Name="ButtonOK" RelativePanel.RightOf="ButtonLeft" RelativePanel.Below="ButtonUp" MinWidth="60">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE91F;"   />
+                </Button>
+                <Button Name="ButtonRight" RelativePanel.RightOf="ButtonOK" RelativePanel.Below="ButtonUp" MinWidth="50">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE970;"   />
+                </Button>
+                <Button Name="ButtonDown" RelativePanel.Below="ButtonLeft" RelativePanel.AlignHorizontalCenterWithPanel="True">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE96E;" MinWidth="140"  />
+                </Button>
+            </RelativePanel>
+        </Viewbox>
+    </Grid>
+</UserControl>

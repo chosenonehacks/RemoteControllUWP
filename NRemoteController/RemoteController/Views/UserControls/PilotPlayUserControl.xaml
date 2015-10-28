@@ -1,0 +1,35 @@
+﻿<UserControl
+    x:Class="RemoteController.Views.UserControls.PilotPlayUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RemoteController.Views.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Viewbox>
+            <RelativePanel>
+                <Button Name="ButtonBack"   RelativePanel.AlignTopWithPanel="True" >
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE100;"  />
+                </Button>
+                <Button Name="ButtonPlayPause"   RelativePanel.RightOf="ButtonBack" >
+                    <StackPanel Orientation="Horizontal">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE102;"  />
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE103;"  />
+                    </StackPanel>
+                </Button>
+                <Button Name="ButtonFwd"   RelativePanel.RightOf="ButtonPlayPause" >
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE101;"  />
+                </Button>
+                <Button Name="ButtonRec"  RelativePanel.Below="ButtonBack" >
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE12B;"  />
+                </Button>
+                <Button Name="ButtonStop" RelativePanel.RightOf="ButtonRec" RelativePanel.Below="ButtonBack" MinWidth="100" >
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE71A;"  />
+                </Button>
+                
+            </RelativePanel>
+        </Viewbox>
+    </Grid>
+</UserControl>
