@@ -73,7 +73,7 @@
                 </PivotItem>
                 <PivotItem>
                     <PivotItem.Header>
-                        <views:TabHeader Label="play" Glyph="&#xE723;" />
+                        <views:TabHeader Label="play" Glyph="&#xE102;" />
                     </PivotItem.Header>
                     <StackPanel Orientation="Vertical">
                         <userControls:PilotTopUserControl/>
@@ -83,11 +83,11 @@
                 </PivotItem>
                 <PivotItem>
                     <PivotItem.Header>
-                        <views:TabHeader Label="123" Glyph="&#xE723;" />
+                        <views:TabHeader Label="123 Abc" Glyph="&#xE1D0;" />
                     </PivotItem.Header>
                     <StackPanel Orientation="Vertical">
                         <userControls:PilotTopUserControl/>
-                        <userControls:PilotTVUserControl/>
+                        <userControls:PilotNumPadUserControl/>
                         <userControls:PilotBottomUserControl/>
                     </StackPanel>
                 </PivotItem>

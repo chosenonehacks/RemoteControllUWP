@@ -1,9 +1,9 @@
 using System;
 using Windows.UI.Xaml;
 
-namespace RemoteController.ViewModels
+namespace WindowsApp1.ViewModels
 {
-    public class SettingsPageViewModel : RemoteController.Mvvm.ViewModelBase
+    public class SettingsPageViewModel : WindowsApp1.Mvvm.ViewModelBase
     {
         public SettingsPartViewModel SettingsPartViewModel { get; } = new SettingsPartViewModel();
         public AboutPartViewModel AboutPartViewModel { get; } = new AboutPartViewModel();
@@ -36,12 +36,6 @@ namespace RemoteController.ViewModels
         {
             get { return _BusyText; }
             set { Set(ref _BusyText, value); }
-        }
-        
-        public string IpAddress
-        {
-            get { return _settings.IpAddress; }
-            set { _settings.IpAddress = value; base.RaisePropertyChanged(); }
         }
 
         public void ShowBusy()

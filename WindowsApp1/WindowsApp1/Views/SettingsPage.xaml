@@ -1,4 +1,4 @@
-<Page x:Class="RemoteController.Views.SettingsPage"
+<Page x:Class="WindowsApp1.Views.SettingsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:Behaviors="using:Template10.Behaviors"
@@ -6,9 +6,9 @@
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="using:RemoteController.Views"
+      xmlns:local="using:WindowsApp1.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:vm="using:RemoteController.ViewModels" mc:Ignorable="d">
+      xmlns:vm="using:WindowsApp1.ViewModels" mc:Ignorable="d">
 
     <Page.DataContext>
         <vm:SettingsPageViewModel />
@@ -44,10 +44,6 @@
                                  Margin="0,12,0,0" HorizontalAlignment="Left"
                                  Header="Busy text" RelativePanel.Below="UseLightThemeToggleSwitch"
                                  Text="{Binding BusyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBox x:Name="IpAddressTextBox" Width="200"
-                                 Margin="0,12,0,0" HorizontalAlignment="Left"
-                                 Header="IP Address of NetGem box" RelativePanel.Below="BusyTextTextBox"
-                                 Text="{Binding IpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         <Button Margin="0,12,0,0" Content="Show Busy Indicator"
                                 RelativePanel.AlignBottomWith="BusyTextTextBox"
                                 RelativePanel.RightOf="BusyTextTextBox">
@@ -60,8 +56,6 @@
                                 </Core:EventTriggerBehavior>
                             </Interactivity:Interaction.Behaviors>
                         </Button>
-
-                        
                     </RelativePanel>
                 </ScrollViewer>
             </PivotItem>

@@ -10,7 +10,9 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Viewbox>
             <RelativePanel>
-                <Button Name="ButtonBack" Content="--"  RelativePanel.AlignLeftWithPanel="True" MinWidth="40"/>
+                <Button Name="ButtonBack"   RelativePanel.AlignLeftWithPanel="True" MinWidth="40">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE248;"  />    
+                </Button>
                 <Button Name="ButtonVolDown" Content="Vol -"   RelativePanel.RightOf="ButtonBack" MinWidth="90"/>
                 <Button Name="ButtonVolUp" Content="Vol +"   RelativePanel.RightOf="ButtonVolDown" MinWidth="90" />
 

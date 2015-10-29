@@ -15,7 +15,7 @@
         
         <Viewbox>
         <RelativePanel>
-                <Button Name="ButtonInfo" Content="info" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" />
+                <Button Name="ButtonInfo" Content="info" RelativePanel.AlignTopWithPanel="True"  />
                 <Button Name="ButtonEpg" Content="epg" RelativePanel.Below="ButtonInfo" RelativePanel.AlignLeftWithPanel="True"    />
 
                 <Button Name="ButtonChAdd" Content="Ch +" RelativePanel.AlignTopWithPanel="True" RelativePanel.RightOf="ButtonInfo"  />

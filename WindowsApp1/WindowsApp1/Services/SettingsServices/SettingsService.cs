@@ -1,8 +1,7 @@
 using System;
 using Windows.UI.Xaml;
-using Template10.Services.SettingsService;
 
-namespace RemoteController.Services.SettingsServices
+namespace WindowsApp1.Services.SettingsServices
 {
     // DOCS: https://github.com/Windows-XAML/Template10/wiki/Docs-%7C-SettingsService
     public partial class SettingsService : ISettingsService
@@ -52,19 +51,6 @@ namespace RemoteController.Services.SettingsServices
             {
                 _helper.Write(nameof(CacheMaxDuration), value);
                 ApplyCacheMaxDuration(value);
-            }
-        }
-
-        public string IpAddress
-        {
-            get
-            {
-                string defaultValue ="Dupa.123.";
-                return _helper.Read<string>(nameof(IpAddress), defaultValue, SettingsStrategies.Local);
-            }
-            set
-            {
-                _helper.Write(nameof(IpAddress), value,SettingsStrategies.Local);
             }
         }
     }
