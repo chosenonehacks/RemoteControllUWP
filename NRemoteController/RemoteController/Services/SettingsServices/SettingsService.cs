@@ -59,7 +59,7 @@ namespace RemoteController.Services.SettingsServices
         {
             get
             {
-                string defaultValue ="Dupa.123.";
+                string defaultValue = String.Empty;
                 return _helper.Read<string>(nameof(IpAddress), defaultValue, SettingsStrategies.Local);
             }
             set

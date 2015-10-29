@@ -15,34 +15,23 @@ namespace RemoteController.ViewModels
 {
     public class MainPageViewModel : RemoteController.Mvvm.ViewModelBase
     {
+        Services.SettingsServices.SettingsService _settings;
         public MainPageViewModel()
         {
-            if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
-            {
-                // designtime data
-                Value = "Designtime value";
-                return;
-            }
+            if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+                _settings = Services.SettingsServices.SettingsService.Instance;
         }
 
         public override void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            if (state.Any())
-            {
-                // use cache value(s)
-                if (state.ContainsKey(nameof(Value))) Value = state[nameof(Value)]?.ToString();
-                // clear any cache
-                state.Clear();
-            }
+            //No IpAdress saved go to settingsPage
+            if(IpAddress == String.Empty)
+                GotoSettingsPage();
         }
 
         public override Task OnNavigatedFromAsync(IDictionary<string, object> state, bool suspending)
         {
-            if (suspending)
-            {
-                // persist into cache
-                state[nameof(Value)] = Value;
-            }
+            
             return base.OnNavigatedFromAsync(state, suspending);
         }
 
@@ -51,12 +40,16 @@ namespace RemoteController.ViewModels
             base.OnNavigatingFrom(args);
         }
 
-        private string _Value = string.Empty;
-        public string Value { get { return _Value; } set { Set(ref _Value, value); } }
-
-        public void GotoDetailsPage()
+        private string _IpAddress;
+        public string IpAddress
         {
-            this.NavigationService.Navigate(typeof(Views.DetailPage), this.Value);
+            get { return _settings.IpAddress; }
+            set { _settings.IpAddress = _IpAddress; base.RaisePropertyChanged(); }
+        }
+
+        public void GotoSettingsPage()
+        {
+            this.NavigationService.Navigate(typeof(Views.SettingsPage));
         }
 
         private DelegateCommand<string> _setPilotCommand;
@@ -70,19 +63,20 @@ namespace RemoteController.ViewModels
                     _setPilotCommand = new DelegateCommand<string>((s) =>
                     {
                         SendRemoteCommand(s);
-                    }/*, (s) => !string.IsNullOrEmpty(Value)*/); // can do check
+                    }/*, (pressedKey) => !string.IsNullOrEmpty(Value)*/); // can do check
 
                 }
                 return _setPilotCommand;
             }
         }
 
-        private async void SendRemoteCommand(string s)
+        private async void SendRemoteCommand(string pressedKey)
         {
-            string address;
-            if (!string.IsNullOrEmpty(s))
+            string address = String.Empty;
+
+            if (!string.IsNullOrEmpty(pressedKey) && !string.IsNullOrEmpty(IpAddress))
             {
-                address = "http://" + "192.168.1.4/RemoteControl/KeyHandling/sendKey?key=" + s;
+                address = "http://" + IpAddress + "/RemoteControl/KeyHandling/sendKey?key=" + pressedKey;
 
                 var uri = new Uri(address,UriKind.Absolute);
                 
@@ -100,28 +94,6 @@ namespace RemoteController.ViewModels
                 }
             }
         }
-
-        #region Command Example
-        //private DelegateCommand _setPilotCommand;
-
-        //public DelegateCommand SendPilotCommand
-        //{
-        //    get
-        //    {
-        //        if (_setPilotCommand == null)
-        //        {
-        //            _setPilotCommand = new DelegateCommand(() =>
-        //            {
-        //                Result = $"Hello {Name}";
-        //            }, () => !string.IsNullOrEmpty(Name));
-
-        //        }
-
-        //        return _setPilotCommand;
-
-        //    }
-        //}
-        #endregion
     }
 }
 

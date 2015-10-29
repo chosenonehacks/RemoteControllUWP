@@ -30,28 +30,11 @@ namespace RemoteController.ViewModels
             get { return _settings.AppTheme.Equals(ApplicationTheme.Light); }
             set { _settings.AppTheme = value ? ApplicationTheme.Light : ApplicationTheme.Dark; base.RaisePropertyChanged(); }
         }
-
-        private string _BusyText = "Please wait...";
-        public string BusyText
-        {
-            get { return _BusyText; }
-            set { Set(ref _BusyText, value); }
-        }
         
         public string IpAddress
         {
             get { return _settings.IpAddress; }
             set { _settings.IpAddress = value; base.RaisePropertyChanged(); }
-        }
-
-        public void ShowBusy()
-        {
-            Views.Shell.SetBusyVisibility(Visibility.Visible, _BusyText);
-        }
-
-        public void HideBusy()
-        {
-            Views.Shell.SetBusyVisibility(Visibility.Collapsed);
         }
     }
 
