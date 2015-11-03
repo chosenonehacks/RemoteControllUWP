@@ -5,10 +5,14 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 using Windows.Networking.Connectivity;
 using Windows.Networking.Sockets;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.Web.Http;
+using RemoteController.Services.DialogService;
 using RemoteController.Services.SettingsServiceMyImplementation;
 using Template10.Mvvm;
 
@@ -24,6 +28,7 @@ namespace RemoteController.ViewModels
     {
         private Services.SettingsServices.SettingsService _settings;
         private ISettingsManager _manager;
+        private DialogService _dialog;
 
         public SettingsPartViewModel()
         {
@@ -123,9 +128,12 @@ namespace RemoteController.ViewModels
         public void SelectIpAddressFromList(object sender, SelectionChangedEventArgs e)
         {
             var listView = sender as ListView;
-            SelectedIpAddress = listView.SelectedItem.ToString();
-            IpAddress = SelectedIpAddress;
-            IsIpListVisible = false;
+            if (listView.SelectedItem != null)
+            {
+                SelectedIpAddress = listView.SelectedItem.ToString();
+                IpAddress = SelectedIpAddress;
+                IsIpListVisible = false;
+            }
         }
 
         private DelegateCommand<string> _checkIpAddressCommand;
@@ -146,13 +154,87 @@ namespace RemoteController.ViewModels
             }
         }
 
-        private void CheckIpAddress(string ipAddressToCheck)
+        private string _BusyText = "Please wait...";
+        public string BusyText
+        {
+            get { return _BusyText; }
+            set { Set(ref _BusyText, value); }
+        }
+
+        public void ShowBusy()
+        {
+            Views.Shell.SetBusyVisibility(Visibility.Visible, _BusyText);
+        }
+
+        public void HideBusy()
+        {
+            Views.Shell.SetBusyVisibility(Visibility.Collapsed);
+        }
+
+        private async void CheckIpAddress(string ipAddressToCheck)
         {
             //TODO:validate IP
-
-            //TODO:send http request with answer
-
+            if (IsValidIp(ipAddressToCheck))
+            {
+                //TODO:send http request with answer
+                
+                    ShowBusy();
+                    bool validAddress = await SendHttpRequest(ipAddressToCheck);
+                
+            }
             //TODO:dialog success
+        }
+
+        private async Task<bool> SendHttpRequest(string ipAddressToCheck)
+        {
+            HttpResponseMessage reposneMsg;
+            string address = String.Empty;
+
+            //TEMP
+            //ipAddressToCheck = "192.168.1.4";
+
+            address = "http://" + ipAddressToCheck + "/RemoteControl/Volume/get";
+            var uri = new Uri(address, UriKind.Absolute);
+
+            using (HttpClient client = new HttpClient())
+            {
+                //IsChecking = true;
+                try
+                {
+                    reposneMsg = await client.GetAsync(uri);
+
+                    HideBusy();
+
+                    _dialog = new DialogService();
+                    await _dialog.ShowAsync("Good address", "Good IP Address", new UICommand("OK"));
+
+                    //IsChecking = false;
+                    
+                    return reposneMsg.IsSuccessStatusCode;
+                }
+                catch (Exception)
+                {
+                    HideBusy();
+
+                    _dialog = new DialogService();
+                    await _dialog.ShowAsync("Change and recheck IP address.", "Wrong IP Address", new UICommand("OK"));
+
+                    //IsChecking = false;
+                    return false;
+                }
+                
+                
+            }
+        }
+
+        //private bool IsChecking { get; set; }
+
+        private bool IsValidIp(string ipAddressToCheck)
+        {
+            if(ipAddressToCheck == null) throw new ArgumentException("ipAddressToCheck");
+
+            IPAddress ipAddres;
+            return IPAddress.TryParse(ipAddressToCheck, out ipAddres);
         }
 
         private void ScanLocalNetwork()
