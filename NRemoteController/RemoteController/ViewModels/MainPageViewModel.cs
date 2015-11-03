@@ -4,45 +4,29 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Windows.Storage.Streams;
-using Windows.UI.Popups;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
 using Windows.Web.Http.Headers;
-using RemoteController.Services.DialogServices;
 using Template10.Mvvm;
 
 namespace RemoteController.ViewModels
 {
     public class MainPageViewModel : RemoteController.Mvvm.ViewModelBase
     {
-        private Services.SettingsServices.SettingsService _settings;
-        private Services.DialogServices.DialogService _dialog;
-        
+        Services.SettingsServices.SettingsService _settings;
         public MainPageViewModel()
         {
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
-            {
                 _settings = Services.SettingsServices.SettingsService.Instance;
-            }
         }
 
-        public override async void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        public override void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            //No IpAdress saved go to Settings Page
-            await CheckIpAddressSetting();
-        }
-
-        private async Task CheckIpAddressSetting()
-        {
-            if (IpAddress == String.Empty)
-            {
-                _dialog = new DialogService();
-                UICommand okBtn = new UICommand("OK");
-                await _dialog.ShowAsync("Looks like you didn't setup IP address of your Netgem box. We will go to Settings page.", "Setup", okBtn);
+            //No IpAdress saved go to settingsPage
+            if(IpAddress == String.Empty)
                 GotoSettingsPage();
-            }
         }
 
         public override Task OnNavigatedFromAsync(IDictionary<string, object> state, bool suspending)
@@ -94,7 +78,7 @@ namespace RemoteController.ViewModels
             {
                 address = "http://" + IpAddress + "/RemoteControl/KeyHandling/sendKey?key=" + pressedKey;
 
-                var uri = new Uri(address,UriKind.Absolute); //Exception incase of invalid IP address entere some validation required
+                var uri = new Uri(address,UriKind.Absolute);
                 
                 using (HttpClient client = new HttpClient())
                 {

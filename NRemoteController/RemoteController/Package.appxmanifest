@@ -1,7 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="3313351d-d452-4add-bb33-d56ace732722" Publisher="CN=hal9k2" Version="1.1.1.0" />
-  <mp:PhoneIdentity PhoneProductId="3313351d-d452-4add-bb33-d56ace732722" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity
+    Name="3313351d-d452-4add-bb33-d56ace732722"
+    Publisher = "CN=hal9k2"
+    Version = "1.0.0.0" /> 
+  <mp:PhoneIdentity PhoneProductId="3313351d-d452-4add-bb33-d56ace732722" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
   <Properties>
     <DisplayName>RemoteController</DisplayName>
     <PublisherDisplayName>hal9k2</PublisherDisplayName>
@@ -19,9 +22,6 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
-        <uap:InitialRotationPreference>
-          <uap:Rotation Preference="portrait" />
-        </uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
