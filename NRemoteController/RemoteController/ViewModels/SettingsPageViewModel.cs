@@ -93,9 +93,6 @@ namespace RemoteController.ViewModels
 
         public List<IPAddress> GetListOfLocalIpAddresses(string iPAddress)
         {
-            //TODO: dodaæ mozliwosc skoanowania zakresów dla innych podsieci
-            //iPAddress = "192.168.2.10";
-
             List<IPAddress> LocalNetworkIpList = new List<IPAddress>();
 
             string stripedIp = iPAddress.Substring(0, iPAddress.LastIndexOf(".", StringComparison.Ordinal) + 1);
