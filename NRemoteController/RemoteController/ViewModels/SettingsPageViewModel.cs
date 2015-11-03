@@ -11,10 +11,12 @@ using Windows.Networking.Sockets;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
 using RemoteController.Services.DialogService;
 using RemoteController.Services.SettingsServiceMyImplementation;
 using Template10.Mvvm;
+using Template10.Services.NavigationService;
 
 namespace RemoteController.ViewModels
 {
@@ -22,6 +24,23 @@ namespace RemoteController.ViewModels
     {
         public SettingsPartViewModel SettingsPartViewModel { get; } = new SettingsPartViewModel();
         public AboutPartViewModel AboutPartViewModel { get; } = new AboutPartViewModel();
+
+        public async override void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        {
+
+        }
+
+        public override Task OnNavigatedFromAsync(IDictionary<string, object> state, bool suspending)
+        {
+
+            return base.OnNavigatedFromAsync(state, suspending);
+        }
+
+        public override void OnNavigatingFrom(NavigatingEventArgs args)
+        {
+            base.OnNavigatingFrom(args);
+        }
+
     }
 
     public class SettingsPartViewModel : Mvvm.ViewModelBase
@@ -90,6 +109,12 @@ namespace RemoteController.ViewModels
         {
             get { return _isIpListVisible; }
             set { Set(ref _isIpListVisible, value); }
+        }
+        private bool _isSearchingVisible;
+        public bool IsSearchingVisible
+        {
+            get { return _isSearchingVisible; }
+            set { Set(ref _isSearchingVisible, value); }
         }
 
 
@@ -180,9 +205,29 @@ namespace RemoteController.ViewModels
                 
                     ShowBusy();
                     bool validAddress = await SendHttpRequest(ipAddressToCheck);
-                
+
+                if (validAddress)
+                {
+                    HideBusy();
+                    _dialog = new DialogService();
+                    await _dialog.ShowAsync("You can use this IP to control your Netgem or Netia box", "Good IP Address", new UICommand("OK"));
+                    //GoToPilotPage();
+                }
+                else
+                {
+                    HideBusy();
+                    _dialog = new DialogService();
+                    await _dialog.ShowAsync("Change and recheck IP address.", "Wrong IP Address", new UICommand("OK"));
+                }
             }
-            //TODO:dialog success
+        }
+
+        private void GoToPilotPage()
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();   
+            }
         }
 
         private async Task<bool> SendHttpRequest(string ipAddressToCheck)
@@ -202,28 +247,12 @@ namespace RemoteController.ViewModels
                 try
                 {
                     reposneMsg = await client.GetAsync(uri);
-
-                    HideBusy();
-
-                    _dialog = new DialogService();
-                    await _dialog.ShowAsync("Good address", "Good IP Address", new UICommand("OK"));
-
-                    //IsChecking = false;
-                    
                     return reposneMsg.IsSuccessStatusCode;
                 }
                 catch (Exception)
                 {
-                    HideBusy();
-
-                    _dialog = new DialogService();
-                    await _dialog.ShowAsync("Change and recheck IP address.", "Wrong IP Address", new UICommand("OK"));
-
-                    //IsChecking = false;
                     return false;
                 }
-                
-                
             }
         }
 
@@ -237,7 +266,7 @@ namespace RemoteController.ViewModels
             return IPAddress.TryParse(ipAddressToCheck, out ipAddres);
         }
 
-        private void ScanLocalNetwork()
+        private async void ScanLocalNetwork()
         {
             string localIpAddress = GetLocalIpAddress();
 
@@ -249,12 +278,21 @@ namespace RemoteController.ViewModels
 
                 foreach (var ipAddress in IpAddressList)
                 {
-                    //TODO: send http request to given address and check for respond
+                    //ShowBusy();
+                    IsSearchingVisible = true; //show progress ring for list
 
-                    ListOfScannedIpAddresses.Add(ipAddress.ToString());
+                    var validAddress = await SendHttpRequest(ipAddress.ToString());
+
+                    if (validAddress)
+                    {
+                        ListOfScannedIpAddresses.Add(ipAddress.ToString());
+                        break;
+                    }
                 }
 
+                //HideBusy();
                 IsIpListVisible = true;
+                IsSearchingVisible = false;
             }
 
         }

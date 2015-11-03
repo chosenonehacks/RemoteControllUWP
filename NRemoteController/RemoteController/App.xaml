@@ -9,6 +9,8 @@
         <ResourceDictionary>
             
             <Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <Converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
+            
             
             <ResourceDictionary.MergedDictionaries>
 

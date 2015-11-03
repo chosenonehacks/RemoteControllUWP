@@ -62,7 +62,6 @@ namespace RemoteController.ViewModels
 
         public void GotoSettingsPage()
         {
-
             this.NavigationService.Navigate(typeof(Views.SettingsPage));
         }
 
