@@ -34,13 +34,31 @@
                         
                         <ToggleSwitch x:Name="UseLightThemeToggleSwitch" Header="Use Light Theme"
                                       IsOn="{Binding UseLightThemeButton, Mode=TwoWay}"
-                                      OffContent="Dark theme" OnContent="Light theme"
-                                      RelativePanel.Below="IpAddressTextBox" />
+                                      OffContent="Dark theme" OnContent="Light theme"/>
                         
-                        <TextBox x:Name="IpAddressTextBox" Width="300"
+                        <TextBox x:Name="IpAddressTextBox" 
                                  Margin="0,12,0,0" HorizontalAlignment="Left"
-                                 Header="IP Address of your NetGem/Netia box" 
-                                 Text="{Binding IpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                 Header="Saved IP Address of your box"
+                                 Text="{Binding IpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.Below="UseLightThemeToggleSwitch"/>
+                        <Button x:Name="ButtonCheck" Margin="5,40,0,0" Content="Check IP" RelativePanel.RightOf="IpAddressTextBox" RelativePanel.Below="UseLightThemeToggleSwitch"
+                                Command="{Binding CheckIpAddressCommand}" CommandParameter="{Binding IpAddress}"/>
+                        <Button x:Name="ButtonScan" Margin="0,5,0,0" Content="Scan local network" RelativePanel.Below="IpAddressTextBox"
+                                Command="{Binding ScanNetworkCommand}"/>
+                        <ListView x:Name="ListViewIPAdresses" Margin="0,5,0,0" RelativePanel.Below="ButtonScan" 
+                                  ItemsSource="{Binding ListOfScannedIpAddresses}"      
+                                  Visibility="{Binding IsIpListVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  SelectionChanged="{x:Bind ViewModel.SettingsPartViewModel.SelectIpAddressFromList }">
+                            
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                                
+                            </ListView.ItemTemplate>
+                            
+                        </ListView>
                         
 
                         

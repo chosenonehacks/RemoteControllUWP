@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -7,6 +8,9 @@ using System.Net.Sockets;
 using Windows.Networking.Connectivity;
 using Windows.Networking.Sockets;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using RemoteController.Services.SettingsServiceMyImplementation;
+using Template10.Mvvm;
 
 namespace RemoteController.ViewModels
 {
@@ -19,13 +23,16 @@ namespace RemoteController.ViewModels
     public class SettingsPartViewModel : Mvvm.ViewModelBase
     {
         private Services.SettingsServices.SettingsService _settings;
+        private ISettingsManager _manager;
 
         public SettingsPartViewModel()
         {
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            {
                 _settings = Services.SettingsServices.SettingsService.Instance;
-
-            GetListOfLocalIpAddresses(GetLocalIpAddress());
+                _manager = new LocalSettingsManager();
+            }
+            
         }
 
         public bool UseShellBackButton
@@ -50,12 +57,124 @@ namespace RemoteController.ViewModels
 
         public string IpAddress
         {
-            get { return _settings.IpAddress; }
+            get { return _manager.Load<string>("IpSetting",String.Empty); }
             set
             {
-                _settings.IpAddress = value;
+                //_settings.IpAddress = value;
+                _manager.Save("IpSetting", value);
                 base.RaisePropertyChanged();
             }
+        }
+
+        private string _selectedIpAddress;
+        public string SelectedIpAddress
+        {
+            get { return _selectedIpAddress; }
+            set { Set(ref _selectedIpAddress, value); }
+        }
+
+        private ObservableCollection<string> _listOfScannedIpAddresse;
+        public ObservableCollection<string> ListOfScannedIpAddresses
+        {
+            get { return _listOfScannedIpAddresse; }
+            set { Set(ref _listOfScannedIpAddresse, value); }
+        }
+
+        private bool _isIpListVisible;
+        public bool IsIpListVisible
+        {
+            get { return _isIpListVisible; }
+            set { Set(ref _isIpListVisible, value); }
+        }
+
+
+
+        private DelegateCommand _scanNetworkCommand;
+        public DelegateCommand ScanNetworkCommand
+        {
+            get
+            {
+                if (_scanNetworkCommand == null)
+                {
+                    _scanNetworkCommand = new DelegateCommand(ScanLocalNetwork);
+                }
+                return _scanNetworkCommand;
+            }
+        }
+
+        private DelegateCommand<string> _selectIpAddressFromListCommand;
+
+        public DelegateCommand<string> SelectIpAddressFromListCommand
+        {
+            get
+            {
+                if (_selectIpAddressFromListCommand == null)
+                {
+                    _selectIpAddressFromListCommand = new DelegateCommand<string>((s) =>
+                    {
+                        //SelectIpAddressFromList(s);
+                    });
+
+                }
+                return _selectIpAddressFromListCommand;
+            }
+        }
+
+        public void SelectIpAddressFromList(object sender, SelectionChangedEventArgs e)
+        {
+            var listView = sender as ListView;
+            SelectedIpAddress = listView.SelectedItem.ToString();
+            IpAddress = SelectedIpAddress;
+            IsIpListVisible = false;
+        }
+
+        private DelegateCommand<string> _checkIpAddressCommand;
+
+        public DelegateCommand<string> CheckIpAddressCommand
+        {
+            get
+            {
+                if (_checkIpAddressCommand == null)
+                {
+                    _checkIpAddressCommand = new DelegateCommand<string>((s) =>
+                    {
+                        CheckIpAddress(s);
+                    });
+
+                }
+                return _checkIpAddressCommand;
+            }
+        }
+
+        private void CheckIpAddress(string ipAddressToCheck)
+        {
+            //TODO:validate IP
+
+            //TODO:send http request with answer
+
+            //TODO:dialog success
+        }
+
+        private void ScanLocalNetwork()
+        {
+            string localIpAddress = GetLocalIpAddress();
+
+            if (!string.IsNullOrEmpty(localIpAddress))
+            {
+                List<IPAddress> IpAddressList = new List<IPAddress>();
+                IpAddressList = GetListOfLocalIpAddresses(localIpAddress);
+                ListOfScannedIpAddresses = new ObservableCollection<string>();
+
+                foreach (var ipAddress in IpAddressList)
+                {
+                    //TODO: send http request to given address and check for respond
+
+                    ListOfScannedIpAddresses.Add(ipAddress.ToString());
+                }
+
+                IsIpListVisible = true;
+            }
+
         }
 
         public string GetLocalIpAddress()

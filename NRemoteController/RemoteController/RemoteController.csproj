@@ -100,8 +100,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Mvvm\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DialogService\DialogHelper.cs" />
+    <Compile Include="Services\DialogService\DialogService.cs" />
+    <Compile Include="Services\DialogService\IDialogService.cs" />
+    <Compile Include="Services\SettingsServiceMyImplementation\ISettingsManager.cs" />
+    <Compile Include="Services\SettingsServiceMyImplementation\LocalSettingsManager.cs" />
+    <Compile Include="Services\SettingsServiceMyImplementation\RoamingSettingsManager.cs" />
+    <Compile Include="Services\SettingsServiceMyImplementation\SettingsManager.cs" />
     <Compile Include="Services\SettingsServices\ISettingsService.cs" />
     <Compile Include="Services\SettingsServices\SettingsService.Apply.cs" />
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
@@ -231,7 +239,7 @@
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
-      <Name>BehaviorsXamlSDKManaged</Name>
+      <Name>Behaviors SDK %28XAML%29</Name>
     </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
