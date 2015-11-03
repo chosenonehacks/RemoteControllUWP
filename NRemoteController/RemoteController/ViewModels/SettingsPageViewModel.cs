@@ -309,8 +309,7 @@ namespace RemoteController.ViewModels
                     if (hn.IPInformation != null)
                     {
                         if (hn.IPInformation.NetworkAdapter.IanaInterfaceType == 6 || // An Ethernet network interface.
-                            hn.IPInformation.NetworkAdapter.IanaInterfaceType == 71)
-                            // An IEEE 802.11 wireless network interface.
+                            hn.IPInformation.NetworkAdapter.IanaInterfaceType == 71) // An IEEE 802.11 wireless network interface.
                         {
                             IPAddress validIpAddress;
 
@@ -324,7 +323,7 @@ namespace RemoteController.ViewModels
                     }
                 }
 
-                return ipAddresses.FirstOrDefault();
+                return ipAddresses.LastOrDefault();
             }
 
             return "Not Connected";

@@ -30,7 +30,7 @@
         <Pivot Grid.Row="1">
             <PivotItem DataContext="{Binding SettingsPartViewModel}" Header="Settings">
                 <ScrollViewer Margin="0,12,-12,0" HorizontalContentAlignment="Left" VerticalAlignment="Top" VerticalScrollBarVisibility="Auto">
-                    <Viewbox>
+                    
                     <RelativePanel >
                         
                         <ToggleSwitch x:Name="UseLightThemeToggleSwitch" Header="Use Light Theme"
@@ -72,7 +72,7 @@
 
 
                         </RelativePanel>
-                    </Viewbox>
+                    
                 </ScrollViewer>
             </PivotItem>
             <PivotItem Header="About">
