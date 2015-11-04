@@ -16,18 +16,33 @@
     <Page.DataContext>
         <vm:MainPageViewModel />
     </Page.DataContext>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid" >
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualState x:Name="VisualStateNarrow">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
                     </VisualState.StateTriggers>
-                </VisualState>
+                        <!--<VisualState.Setters>
+                        <Setter Target="MainPivot.MaxWidth" Value="300" />                            
+                        </VisualState.Setters>-->
+                    </VisualState>
                 <VisualState x:Name="VisualStateNormal">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
                     </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MainPivot.MaxWidth" Value="600" />
+                        <!--<Setter Target="MainPivot.MaxHeight" Value="400" />-->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MainPivot.MaxWidth" Value="700" />
+                    </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
@@ -43,10 +58,10 @@
 
         <!--  #region content  -->
 
-        <StackPanel Grid.Row="1" VerticalAlignment="Top"
-                    Orientation="Horizontal" Padding="0,0,0,0">
+        <StackPanel Grid.Row="1" VerticalAlignment="Top" x:Name="MainPanel"  
+                    Orientation="Horizontal" >
 
-            <Pivot  Style="{StaticResource PivotStyleDynamicHeader}">
+            <Pivot  Style="{StaticResource PivotStyleDynamicHeader}" x:Name="MainPivot" >
                 <Pivot.Resources>
                     <Style BasedOn="{StaticResource PivotStyleDynamicHeaderItem}" TargetType="PivotHeaderItem"/>
                 </Pivot.Resources>
@@ -55,8 +70,8 @@
                     <PivotItem.Header >
                         <views:TabHeader Label="TV" Glyph="&#xE7F4;" />
                     </PivotItem.Header>
-                    <StackPanel Orientation="Vertical">
-                    <userControls:PilotTopUserControl/>
+                    <StackPanel x:Name="PanelTVUser" Orientation="Vertical">
+                        <userControls:PilotTopUserControl/>
                     <userControls:PilotTVUserControl/>
                     <userControls:PilotBottomUserControl/>
                     </StackPanel>
@@ -65,7 +80,7 @@
                     <PivotItem.Header>
                         <views:TabHeader Label="navi" Glyph="&#xE759;" />
                     </PivotItem.Header>
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel  x:Name="PanelNavi"  Orientation="Vertical">
                         <userControls:PilotTopUserControl/>
                         <userControls:PilotNaviUserControl/>
                         <userControls:PilotBottomUserControl/>

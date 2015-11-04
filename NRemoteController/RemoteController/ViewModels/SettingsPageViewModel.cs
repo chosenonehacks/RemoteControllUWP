@@ -322,7 +322,7 @@ namespace RemoteController.ViewModels
                         }
                     }
                 }
-
+                //TODO: maybe change how to chose if klas C network 192... then chose that one (in case more NICs which are active)
                 return ipAddresses.LastOrDefault();
             }
 
