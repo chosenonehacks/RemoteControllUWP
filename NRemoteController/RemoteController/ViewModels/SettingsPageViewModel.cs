@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -12,7 +14,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Windows.Web.Http;
+//using Windows.Web.Http;
 using RemoteController.Services.DialogService;
 using RemoteController.Services.SettingsServiceMyImplementation;
 using Template10.Mvvm;
@@ -243,7 +245,7 @@ namespace RemoteController.ViewModels
 
             using (HttpClient client = new HttpClient())
             {
-                //IsChecking = true;
+                client.Timeout = TimeSpan.FromMilliseconds(4000);
                 try
                 {
                     reposneMsg = await client.GetAsync(uri);
@@ -276,23 +278,35 @@ namespace RemoteController.ViewModels
                 IpAddressList = GetListOfLocalIpAddresses(localIpAddress);
                 ListOfScannedIpAddresses = new ObservableCollection<string>();
 
+                //test
+                //IpAddressList.Clear();
+                //IPAddress ip1 = IPAddress.Parse("19.168.1.5");
+                //IPAddress ip2 = IPAddress.Parse("19.168.1.6");
+                //IpAddressList.Add(ip1);
+                //IpAddressList.Add(ip2);
+
                 foreach (var ipAddress in IpAddressList)
                 {
-                    //ShowBusy();
+                
                     IsSearchingVisible = true; //show progress ring for list
 
                     var validAddress = await SendHttpRequest(ipAddress.ToString());
-
+                    
                     if (validAddress)
                     {
                         ListOfScannedIpAddresses.Add(ipAddress.ToString());
                         break;
                     }
                 }
-
-                //HideBusy();
+                
                 IsIpListVisible = true;
                 IsSearchingVisible = false;
+                if (!ListOfScannedIpAddresses.Any())
+                {
+                    _dialog = new DialogService();
+                    await _dialog.ShowAsync("Can't find any valid address. Is your box connected to same local network?", "Wrong Network", new UICommand("OK"));
+                    IsIpListVisible = false;
+                }
             }
 
         }
