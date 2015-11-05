@@ -9,7 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Viewbox>
-            <RelativePanel>
+            <!--<RelativePanel>
                 <Button Name="ButtonBack"   RelativePanel.AlignLeftWithPanel="True" MinWidth="40">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE248;"  />    
                 </Button>
@@ -20,7 +20,36 @@
                 <Button Name="ButtonGreen" Content="" RelativePanel.AlignBottomWithPanel="True"  RelativePanel.RightOf="ButtonRed"  BorderBrush="Green" MinWidth="55"/>
                 <Button Name="ButtonYellow" Content="" RelativePanel.AlignBottomWithPanel="True"  RelativePanel.RightOf="ButtonGreen"  BorderBrush="Yellow" MinWidth="55"/>
                 <Button Name="ButtonBlue" Content="" RelativePanel.AlignBottomWithPanel="True"  RelativePanel.RightOf="ButtonYellow"  BorderBrush="Blue" MinWidth="55"/>
-            </RelativePanel>
+            </RelativePanel>-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>                    
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Name="ButtonBack"   RelativePanel.AlignLeftWithPanel="True"  HorizontalAlignment="Stretch" >
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE248;"  />
+                </Button>
+                <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                <Button  Grid.Column="0" Name="ButtonVolDown" Content="Vol -"     HorizontalAlignment="Stretch" />
+                    <Button  Grid.Column="1" Name="ButtonVolUp" Content="Vol +"     HorizontalAlignment="Stretch" />
+                </Grid>
+                <Button Grid.Row="1" Grid.Column="0" Name="ButtonRed" Content=""  BorderBrush="Red" MaxHeight="20" HorizontalAlignment="Stretch"/>
+                <Button Grid.Row="1" Grid.Column="1" Name="ButtonGreen" Content="" BorderBrush="Green" MaxHeight="20" HorizontalAlignment="Stretch"/>
+                <Button Grid.Row="1" Grid.Column="2" Name="ButtonYellow" Content="" BorderBrush="Yellow" MaxHeight="20" HorizontalAlignment="Stretch"/>
+                <Button Grid.Row="1" Grid.Column="3" Name="ButtonBlue" Content="" BorderBrush="Blue" MaxHeight="20" HorizontalAlignment="Stretch"/>
+            </Grid>            
         </Viewbox>
     </Grid>
 </UserControl>

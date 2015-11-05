@@ -9,7 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Viewbox>
-            <RelativePanel>
+            <!--<RelativePanel>
                 <Button Name="ButtonUp"   RelativePanel.AlignHorizontalCenterWithPanel="True" MinWidth="160">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE96D;"  />
                 </Button>
@@ -26,7 +26,35 @@
                 <Button Name="ButtonDown" RelativePanel.Below="ButtonLeft" RelativePanel.AlignHorizontalCenterWithPanel="True">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE96E;" MinWidth="140"  />
                 </Button>
-            </RelativePanel>
+            </RelativePanel>-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Name="ButtonUp" MinWidth="160" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE96D;"  />
+                </Button>
+                <Button Grid.Row="1" Grid.Column="0" Name="ButtonLeft" RelativePanel.AlignLeftWithPanel="True" MinWidth="50" >
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE96F;"  />
+                </Button>
+
+                <Button Grid.Row="1" Grid.Column="1" Name="ButtonOK" RelativePanel.RightOf="ButtonLeft" MinWidth="60">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE91F;"   />
+                </Button>
+                <Button Grid.Row="1" Grid.Column="3" Name="ButtonRight" RelativePanel.RightOf="ButtonOK" MinWidth="50">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE970;"   />
+                </Button>
+                <Button Grid.Row="2" Grid.Column="0" Name="ButtonDown" RelativePanel.Below="ButtonLeft" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE96E;" MinWidth="140"  />
+                </Button>
+            </Grid>
         </Viewbox>
     </Grid>
 </UserControl>
