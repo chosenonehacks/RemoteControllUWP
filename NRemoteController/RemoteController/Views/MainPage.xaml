@@ -19,14 +19,15 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid" >
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="VisualStateNarrow">
+                <!--<VisualState x:Name="VisualStateNarrow">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+                        <AdaptiveTrigger MinWindowHeight="20" />
+                        <AdaptiveTrigger MinWindowWidth="150" />
                     </VisualState.StateTriggers>
-                        <!--<VisualState.Setters>
-                        <Setter Target="MainPivot.MaxWidth" Value="300" />                            
-                        </VisualState.Setters>-->
-                    </VisualState>
+                        <VisualState.Setters>
+                        <Setter Target="MainPivot.MaxWidth" Value="100" />                            
+                        </VisualState.Setters>
+                    </VisualState>-->
                 <VisualState x:Name="VisualStateNormal">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
