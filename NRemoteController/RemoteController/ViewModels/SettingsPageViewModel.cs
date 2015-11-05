@@ -99,8 +99,8 @@ namespace RemoteController.ViewModels
             set { Set(ref _selectedIpAddress, value); }
         }
 
-        private ObservableCollection<string> _listOfScannedIpAddresse;
-        public ObservableCollection<string> ListOfScannedIpAddresses
+        private List<string> _listOfScannedIpAddresse;
+        public List<string> ListOfScannedIpAddresses
         {
             get { return _listOfScannedIpAddresse; }
             set { Set(ref _listOfScannedIpAddresse, value); }
@@ -128,7 +128,7 @@ namespace RemoteController.ViewModels
             {
                 if (_scanNetworkCommand == null)
                 {
-                    _scanNetworkCommand = new DelegateCommand(ScanLocalNetwork);
+                    _scanNetworkCommand = new DelegateCommand(async () => { await ScanLocalNetwork(); });
                 }
                 return _scanNetworkCommand;
             }
@@ -219,7 +219,7 @@ namespace RemoteController.ViewModels
                 {
                     HideBusy();
                     _dialog = new DialogService();
-                    await _dialog.ShowAsync("Change and recheck IP address.", "Wrong IP Address", new UICommand("OK"));
+                    await _dialog.ShowAsync("Can't connect to given address. Try different one!", "Wrong IP Address", new UICommand("OK"));
                 }
             }
         }
@@ -268,45 +268,64 @@ namespace RemoteController.ViewModels
             return IPAddress.TryParse(ipAddressToCheck, out ipAddres);
         }
 
-        private async void ScanLocalNetwork()
+        private async Task ScanLocalNetwork()
         {
+            ListOfScannedIpAddresses = new List<string>();
             string localIpAddress = GetLocalIpAddress();
 
-            if (!string.IsNullOrEmpty(localIpAddress))
+            if (!String.IsNullOrEmpty(localIpAddress) && localIpAddress != "Not Connected")
             {
                 List<IPAddress> IpAddressList = new List<IPAddress>();
                 IpAddressList = GetListOfLocalIpAddresses(localIpAddress);
-                ListOfScannedIpAddresses = new ObservableCollection<string>();
-
-                //test
-                //IpAddressList.Clear();
-                //IPAddress ip1 = IPAddress.Parse("19.168.1.5");
-                //IPAddress ip2 = IPAddress.Parse("19.168.1.6");
-                //IpAddressList.Add(ip1);
-                //IpAddressList.Add(ip2);
 
                 foreach (var ipAddress in IpAddressList)
                 {
-                
-                    IsSearchingVisible = true; //show progress ring for list
+                        ShowBusy();
+                    //IsSearchingVisible = true; //show progress ring for list
 
                     var validAddress = await SendHttpRequest(ipAddress.ToString());
-                    
+
                     if (validAddress)
                     {
                         ListOfScannedIpAddresses.Add(ipAddress.ToString());
                         break;
                     }
                 }
-                
-                IsIpListVisible = true;
-                IsSearchingVisible = false;
+            //Task<bool>[] tasks = new Task<bool>[IpAddressList.Count];
+            //for (int i = 0; i < IpAddressList.Count; i++)
+            //{
+            //    Task<bool> task = SendHttpRequest(IpAddressList[i].ToString());
+            //    tasks[i] = task;
+            //}
+            //await Task.WhenAll(tasks);
+
+            //for (int i = 0; i < tasks.Length; i++)
+            //{
+            //    if (tasks[i].Result)
+            //    {
+            //        ListOfScannedIpAddresses.Add(IpAddressList[i].ToString());
+            //    }
+            //}
+
+            IsIpListVisible = true;
+                //IsSearchingVisible = false;
+                HideBusy();
                 if (!ListOfScannedIpAddresses.Any())
                 {
                     _dialog = new DialogService();
-                    await _dialog.ShowAsync("Can't find any valid address. Is your box connected to same local network?", "Wrong Network", new UICommand("OK"));
+                    await
+                        _dialog.ShowAsync("Can't find any valid address. Is your box connected to same local network?",
+                            "Wrong Network", new UICommand("OK"));
                     IsIpListVisible = false;
                 }
+            }
+            else
+            {
+                _dialog = new DialogService();
+                await
+                    _dialog.ShowAsync("You are not conected to any LAN / WiFi network.",
+                        "Network interface down", new UICommand("OK"));
+                IsIpListVisible = false;
             }
 
         }
@@ -367,7 +386,7 @@ namespace RemoteController.ViewModels
         {
             public static byte[,] ParseRange(string str)
             {
-                if (string.IsNullOrEmpty(str)) throw new ArgumentException("str");
+                if (string.IsNullOrEmpty(str)) throw new ArgumentException("IP String null in ParseRange");
 
                 string[] partStr = str.Split('.');
                 if (partStr.Length != 4) throw new FormatException();
