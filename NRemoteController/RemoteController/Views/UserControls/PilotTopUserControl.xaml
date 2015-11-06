@@ -11,16 +11,16 @@
         <Viewbox >
             <RelativePanel >
 
-                <Button Name="ButtonPower" RelativePanel.AlignTopWithPanel="True" Command="{Binding SendPilotCommand}" CommandParameter="1">
+                <Button Name="ButtonPower" RelativePanel.AlignTopWithPanel="True" Command="{Binding SendPilotCommand}" CommandParameter="on_off">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE946;" FontSize="26" Foreground="Red" />
                 </Button>
-                <Button Name="ButtonMute" RelativePanel.AlignTopWithPanel="True" RelativePanel.RightOf="ButtonPower">
+                <Button Name="ButtonMute" RelativePanel.AlignTopWithPanel="True" RelativePanel.RightOf="ButtonPower" Command="{Binding SendPilotCommand}" CommandParameter="mute"> <!--gets aswel volume /RemoteControl/Volume/get-->
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE198;" FontSize="26" />
                 </Button>
-                <Button Name="ButtonBox" RelativePanel.AlignTopWithPanel="True" RelativePanel.RightOf="ButtonMute">
+                <Button Name="ButtonBox" RelativePanel.AlignTopWithPanel="True" RelativePanel.RightOf="ButtonMute" Command="{Binding SendPilotCommand}" CommandParameter="fullscreen">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEA5F;" FontSize="26" />
                 </Button>
-                <Button Name="ButtonMenu" Content="menu" FontSize="19.5" RelativePanel.AlignTopWithPanel="True" RelativePanel.RightOf="ButtonBox" MinWidth="82" />
+                <Button Name="ButtonMenu" Content="menu" FontSize="19.5" RelativePanel.AlignTopWithPanel="True" RelativePanel.RightOf="ButtonBox" MinWidth="82" Command="{Binding SendPilotCommand}" CommandParameter="menu"/>
             </RelativePanel>
         </Viewbox>
     </Grid>

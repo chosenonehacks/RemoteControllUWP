@@ -38,20 +38,20 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Row="0" Grid.Column="0" Name="ButtonUp" MinWidth="160" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+                <Button Grid.Row="0" Grid.Column="0" Name="ButtonUp" MinWidth="160" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="up">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE96D;"  />
                 </Button>
-                <Button Grid.Row="1" Grid.Column="0" Name="ButtonLeft" RelativePanel.AlignLeftWithPanel="True" MinWidth="50" >
+                <Button Grid.Row="1" Grid.Column="0" Name="ButtonLeft" RelativePanel.AlignLeftWithPanel="True" MinWidth="50" Command="{Binding SendPilotCommand}" CommandParameter="left">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE96F;"  />
                 </Button>
 
-                <Button Grid.Row="1" Grid.Column="1" Name="ButtonOK" RelativePanel.RightOf="ButtonLeft" MinWidth="60">
+                <Button Grid.Row="1" Grid.Column="1" Name="ButtonOK" RelativePanel.RightOf="ButtonLeft" MinWidth="60" Command="{Binding SendPilotCommand}" CommandParameter="ok">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE91F;"   />
                 </Button>
-                <Button Grid.Row="1" Grid.Column="3" Name="ButtonRight" RelativePanel.RightOf="ButtonOK" MinWidth="50">
+                <Button Grid.Row="1" Grid.Column="3" Name="ButtonRight" RelativePanel.RightOf="ButtonOK" MinWidth="50" Command="{Binding SendPilotCommand}" CommandParameter="right">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE970;"   />
                 </Button>
-                <Button Grid.Row="2" Grid.Column="0" Name="ButtonDown" RelativePanel.Below="ButtonLeft" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+                <Button Grid.Row="2" Grid.Column="0" Name="ButtonDown" RelativePanel.Below="ButtonLeft" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="down">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE96E;" MinWidth="140"  />
                 </Button>
             </Grid>

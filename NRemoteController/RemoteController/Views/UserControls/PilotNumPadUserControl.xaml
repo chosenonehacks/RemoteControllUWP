@@ -35,7 +35,7 @@
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE925;"  />    
                 </Button>
                 <Button Grid.Row="2" Grid.Column="1" Name="ButtonZero" Content="0" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="0"/>
-                <Button Grid.Row="2" Grid.Column="2" Name="ButtonKeyb"  HorizontalAlignment="Stretch">
+                <Button Grid.Row="2" Grid.Column="2" Name="ButtonKeyb"  HorizontalAlignment="Stretch"> <!--go to new page-->
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE144;"  />
                 </Button>
             </Grid>

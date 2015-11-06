@@ -34,7 +34,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Row="0" Grid.Column="0" Name="ButtonBack"   RelativePanel.AlignLeftWithPanel="True"  HorizontalAlignment="Stretch" >
+                <Button Grid.Row="0" Grid.Column="0" Name="ButtonBack"   RelativePanel.AlignLeftWithPanel="True"  HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="back">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE248;"  />
                 </Button>
                 <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4">
@@ -42,13 +42,14 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                <Button  Grid.Column="0" Name="ButtonVolDown" Content="Vol -"     HorizontalAlignment="Stretch" />
-                    <Button  Grid.Column="1" Name="ButtonVolUp" Content="Vol +"     HorizontalAlignment="Stretch" />
+                    <Button  Grid.Column="0" Name="ButtonVolDown" Content="Vol -"     HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="volume_down"/>
+                    <!--gets aswel volume /RemoteControl/Volume/get-->
+                    <Button  Grid.Column="1" Name="ButtonVolUp" Content="Vol +"     HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="volume_up"/>
                 </Grid>
-                <Button Grid.Row="1" Grid.Column="0" Name="ButtonRed" Content=""  BorderBrush="Red" MaxHeight="20" HorizontalAlignment="Stretch"/>
-                <Button Grid.Row="1" Grid.Column="1" Name="ButtonGreen" Content="" BorderBrush="Green" MaxHeight="20" HorizontalAlignment="Stretch"/>
-                <Button Grid.Row="1" Grid.Column="2" Name="ButtonYellow" Content="" BorderBrush="Yellow" MaxHeight="20" HorizontalAlignment="Stretch"/>
-                <Button Grid.Row="1" Grid.Column="3" Name="ButtonBlue" Content="" BorderBrush="Blue" MaxHeight="20" HorizontalAlignment="Stretch"/>
+                <Button Grid.Row="1" Grid.Column="0" Name="ButtonRed" Content=""  BorderBrush="Red" MaxHeight="20" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="red"/>
+                <Button Grid.Row="1" Grid.Column="1" Name="ButtonGreen" Content="" BorderBrush="Green" MaxHeight="20" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="green"/>
+                <Button Grid.Row="1" Grid.Column="2" Name="ButtonYellow" Content="" BorderBrush="Yellow" MaxHeight="20" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="yellow"/>
+                <Button Grid.Row="1" Grid.Column="3" Name="ButtonBlue" Content="" BorderBrush="Blue" MaxHeight="20" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="blue"/>
             </Grid>            
         </Viewbox>
     </Grid>

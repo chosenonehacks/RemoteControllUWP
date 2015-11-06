@@ -23,7 +23,11 @@
 
         <!--  header  -->
 
-        <controls:PageHeader Frame="{x:Bind Frame, Mode=OneWay}" Content="Settings Page" />
+        <controls:PageHeader Frame="{x:Bind Frame, Mode=OneWay}" Content="Settings Page" >
+            <Interactivity:Interaction.Behaviors>
+                <Behaviors:EllipsisBehavior Visibility="Collapsed" />
+            </Interactivity:Interaction.Behaviors>    
+        </controls:PageHeader>
 
         <!--  #region content  -->
 

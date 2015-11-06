@@ -53,7 +53,7 @@
         </Grid.RowDefinitions>
         <controls:PageHeader BackButtonVisibility="Collapsed" Content="Remote Control" Frame="{x:Bind Frame, Mode=OneWay}">
             <Interactivity:Interaction.Behaviors>
-                <Behaviors:EllipsisBehavior Visibility="Visible" />
+                <Behaviors:EllipsisBehavior Visibility="Collapsed" />
             </Interactivity:Interaction.Behaviors>
         </controls:PageHeader>
 

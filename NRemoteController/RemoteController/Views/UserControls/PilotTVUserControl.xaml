@@ -31,11 +31,12 @@
                     <ColumnDefinition />
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Row="0" Grid.Column="0" Name="ButtonInfo" Content="info" HorizontalAlignment="Stretch" />
-                <Button Grid.Row="1" Grid.Column="0" Name="ButtonEpg" Content="epg" HorizontalAlignment="Stretch"/>
+                <Button Grid.Row="0" Grid.Column="0" Name="ButtonInfo" Content="info" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="info"/>
+                <!--info wysyla OK na ipadzie-->
+                <Button Grid.Row="1" Grid.Column="0" Name="ButtonEpg" Content="epg" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="guide"/>
 
-                <Button Grid.Row="0" Grid.Column="1" Name="ButtonChAdd" Content="Ch +"/>
-                <Button Grid.Row="1" Grid.Column="1" Name="ButtonChMinus" Content="Ch -" HorizontalAlignment="Stretch"/>
+                <Button Grid.Row="0" Grid.Column="1" Name="ButtonChAdd" Content="Ch +" Command="{Binding SendPilotCommand}" CommandParameter="channel_up"/>
+                <Button Grid.Row="1" Grid.Column="1" Name="ButtonChMinus" Content="Ch -" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="channel_down"/>
             </Grid>
         </Viewbox>
         
