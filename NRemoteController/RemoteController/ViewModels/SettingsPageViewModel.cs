@@ -26,23 +26,7 @@ namespace RemoteController.ViewModels
     {
         public SettingsPartViewModel SettingsPartViewModel { get; } = new SettingsPartViewModel();
         public AboutPartViewModel AboutPartViewModel { get; } = new AboutPartViewModel();
-
-        public async override void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
-        {
-
-        }
-
-        public override Task OnNavigatedFromAsync(IDictionary<string, object> state, bool suspending)
-        {
-
-            return base.OnNavigatedFromAsync(state, suspending);
-        }
-
-        public override void OnNavigatingFrom(NavigatingEventArgs args)
-        {
-            base.OnNavigatingFrom(args);
-        }
-
+        
     }
 
     public class SettingsPartViewModel : Mvvm.ViewModelBase

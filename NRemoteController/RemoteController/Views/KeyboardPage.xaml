@@ -1,0 +1,103 @@
+<Page
+    x:Class="RemoteController.Views.KeyboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RemoteController.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:RemoteController.ViewModels"
+    xmlns:controls="using:Template10.Controls"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:Behaviors="using:Template10.Behaviors" 
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:userControls="using:RemoteController.Views.UserControls"
+    mc:Ignorable="d" x:Name="ThisPage">
+    <Page.DataContext>
+        <vm:KeyboardPageViewModel />
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <!-- adaptive states -->
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="VisualStateNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger x:Name="VisualStateNarrowTrigger" MinWindowWidth="{StaticResource NarrowMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--<Setter Target="ContentGrid.MaxWidth" Value="600" />-->
+                        <!--<Setter Target="TextBox.MinWidth" Value="300" />-->
+                    </VisualState.Setters>
+                </VisualState>
+                
+                <VisualState x:Name="VisualStateNormal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger x:Name="VisualStateNormalTrigger" MinWindowWidth="{StaticResource NormalMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ContentGrid.MaxWidth" Value="600" />
+                        <!--<Setter Target="TextBox.MinWidth" Value="400" />-->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger x:Name="VisualStateWideTrigger" MinWindowWidth="{StaticResource WideMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                    <Setter Target="ContentGrid.MaxWidth" Value="700" />
+                        <!--<Setter Target="TextBox.MinWidth" Value="750" />-->
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- header -->
+        <controls:PageHeader BackButtonVisibility="Collapsed" Content="Remote Control" Frame="{x:Bind Frame, Mode=OneWay}">
+            <!--<Interactivity:Interaction.Behaviors>
+                <Behaviors:EllipsisBehavior Visibility="Collapsed" />
+            </Interactivity:Interaction.Behaviors>-->
+        </controls:PageHeader>
+
+        <!--#region content-->
+
+        <Grid x:Name="ContentGrid" Grid.Row="1" Margin="10,10,10,10" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+                <userControls:PilotNaviUserControl Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+            
+            
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" x:Name="ButtonDel" Command="{Binding SendPilotCommand}" CommandParameter="delete" RelativePanel.AlignTopWithPanel="True" MinWidth="80" MinHeight="40">
+                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE925;"  />
+                    </Button>
+                <TextBox KeyDown="{x:Bind ViewModel.KeyDown }" 
+                    Grid.Column="1" x:Name="TextBox"  BorderThickness="1" BorderBrush="AliceBlue"  Margin="5,0,0,0" HorizontalAlignment="Stretch" RelativePanel.RightOf="ButtonDel" MaxHeight="180"  />
+                
+                </Grid>
+        </Grid>
+
+        <userControls:PilotBottomUserControl Grid.Column="0" Grid.Row="2" />
+        <!--#endregion-->
+
+    </Grid>
+</Page>
+

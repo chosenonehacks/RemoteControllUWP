@@ -19,7 +19,7 @@ namespace RemoteController.ViewModels
     public class MainPageViewModel : RemoteController.Mvvm.ViewModelBase
     {
         Services.SettingsServices.SettingsService _settings;
-        private ISettingsManager _manager;
+        private readonly ISettingsManager _manager;
         private DialogService _dialog;
         public MainPageViewModel()
         {
@@ -54,7 +54,6 @@ namespace RemoteController.ViewModels
             base.OnNavigatingFrom(args);
         }
 
-        private string _IpAddress;
         public string IpAddress
         {
             get { return _manager.Load<string>("IpSetting", String.Empty); }
@@ -63,6 +62,11 @@ namespace RemoteController.ViewModels
         public void GotoSettingsPage()
         {
             this.NavigationService.Navigate(typeof(Views.SettingsPage));
+        }
+
+        public void GotoKeyboardPage()
+        {
+            this.NavigationService.Navigate(typeof(Views.KeyboardPage));
         }
 
         private DelegateCommand<string> _setPilotCommand;
@@ -80,6 +84,20 @@ namespace RemoteController.ViewModels
 
                 }
                 return _setPilotCommand;
+            }
+        }
+
+        private DelegateCommand _gotoKeyboardPageComaCommand;
+
+        public DelegateCommand GotoKeyboardPageCommand
+        {
+            get
+            {
+                if (_gotoKeyboardPageComaCommand == null)
+                {
+                    _gotoKeyboardPageComaCommand = new DelegateCommand(GotoKeyboardPage); 
+                }
+                return _gotoKeyboardPageComaCommand;
             }
         }
 

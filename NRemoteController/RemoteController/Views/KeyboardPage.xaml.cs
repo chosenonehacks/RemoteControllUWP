@@ -4,16 +4,16 @@ using Windows.UI.Xaml.Controls;
 
 namespace RemoteController.Views
 {
-    public sealed partial class DetailPage : Page
+    public sealed partial class KeyboardPage : Page
     {
-        public DetailPage()
+        public KeyboardPage()
         {
             InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Disabled;
         }
 
         // strongly-typed view models enable x:bind
-        public DetailPageViewModel ViewModel => DataContext as DetailPageViewModel;
+        public KeyboardPageViewModel ViewModel => DataContext as KeyboardPageViewModel;
     }
 }
 

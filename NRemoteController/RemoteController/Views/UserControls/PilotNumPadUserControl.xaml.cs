@@ -23,5 +23,7 @@ namespace RemoteController.Views.UserControls
         {
             this.InitializeComponent();
         }
+
+        
     }
 }
