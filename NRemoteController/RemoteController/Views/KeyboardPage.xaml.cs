@@ -14,6 +14,7 @@ namespace RemoteController.Views
 
         // strongly-typed view models enable x:bind
         public KeyboardPageViewModel ViewModel => DataContext as KeyboardPageViewModel;
+        
     }
 }
 

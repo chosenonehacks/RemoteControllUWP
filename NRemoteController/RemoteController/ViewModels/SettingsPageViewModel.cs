@@ -208,14 +208,6 @@ namespace RemoteController.ViewModels
             }
         }
 
-        private void GoToPilotPage()
-        {
-            if (NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();   
-            }
-        }
-
         private async Task<bool> SendHttpRequest(string ipAddressToCheck)
         {
             HttpResponseMessage reposneMsg;

@@ -68,7 +68,7 @@
 
         <!--#region content-->
 
-        <Grid x:Name="ContentGrid" Grid.Row="1" Margin="10,10,10,10" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Grid x:Name="ContentGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
@@ -81,7 +81,7 @@
                 <userControls:PilotNaviUserControl Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
             
             
-            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,5,0,0">
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
@@ -89,8 +89,8 @@
                     <Button Grid.Column="0" x:Name="ButtonDel" Command="{Binding SendPilotCommand}" CommandParameter="delete" RelativePanel.AlignTopWithPanel="True" MinWidth="80" MinHeight="40">
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE925;"  />
                     </Button>
-                <TextBox KeyDown="{x:Bind ViewModel.KeyDown }" 
-                    Grid.Column="1" x:Name="TextBox"  BorderThickness="1" BorderBrush="AliceBlue"  Margin="5,0,0,0" HorizontalAlignment="Stretch" RelativePanel.RightOf="ButtonDel" MaxHeight="180"  />
+                <TextBox KeyDown="{x:Bind ViewModel.KeyDown}" 
+                    Grid.Column="1" x:Name="TextBox"  BorderThickness="1" BorderBrush="AliceBlue"  Margin="0,0,0,0" HorizontalAlignment="Stretch" RelativePanel.RightOf="ButtonDel" MaxHeight="180"  />
                 
                 </Grid>
         </Grid>
