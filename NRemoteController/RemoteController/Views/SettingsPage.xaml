@@ -44,6 +44,9 @@
                         <TextBox x:Name="IpAddressTextBox" 
                                  Margin="0,12,0,0" HorizontalAlignment="Left"
                                  Header="Saved IP Address of your box"
+                                 InputScope="Number"
+                                 IsTextPredictionEnabled="False"
+                                 IsSpellCheckEnabled="False"
                                  Text="{Binding IpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.Below="UseLightThemeToggleSwitch"/>
                         <Button x:Name="ButtonCheck" Margin="5,40,0,0" Content="Check IP" RelativePanel.RightOf="IpAddressTextBox" RelativePanel.Below="UseLightThemeToggleSwitch"
                                 Command="{Binding CheckIpAddressCommand}" CommandParameter="{Binding IpAddress}"/>

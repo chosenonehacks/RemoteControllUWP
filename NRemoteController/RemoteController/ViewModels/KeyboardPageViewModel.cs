@@ -5,7 +5,9 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.System;
+using Windows.UI.Popups;
 using Windows.Web.Http;
+using RemoteController.Services.DialogService;
 using RemoteController.Services.SettingsServiceMyImplementation;
 using Template10.Mvvm;
 
@@ -14,6 +16,7 @@ namespace RemoteController.ViewModels
     public class KeyboardPageViewModel : RemoteController.Mvvm.ViewModelBase
     {
         private readonly ISettingsManager _manager;
+        private DialogService _dialog;
 
         public KeyboardPageViewModel()
         {
@@ -115,8 +118,16 @@ namespace RemoteController.ViewModels
                     request.RequestUri = new Uri(address);
 
                     IHttpContent httpContent = new HttpStringContent(String.Empty);
-
-                    await client.PostAsync(uri, httpContent);
+                    try
+                    {
+                        await client.PostAsync(uri, httpContent);
+                    }
+                    catch (Exception e)
+                    {
+                        _dialog = new DialogService();
+                        await _dialog.ShowAsync("Connection to your box cannot be established. Please check your IP Address settings.", "Network Problem", new UICommand("OK"));
+                    }
+                    
                 }
             }
         }

@@ -20,6 +20,7 @@ using RemoteController.Services.SettingsServiceMyImplementation;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
 
+
 namespace RemoteController.ViewModels
 {
     public class SettingsPageViewModel : RemoteController.Mvvm.ViewModelBase
