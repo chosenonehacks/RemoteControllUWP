@@ -61,9 +61,9 @@
 
         <!-- header -->
         <controls:PageHeader BackButtonVisibility="Collapsed" Content="Remote Control" Frame="{x:Bind Frame, Mode=OneWay}">
-            <!--<Interactivity:Interaction.Behaviors>
+            <Interactivity:Interaction.Behaviors>
                 <Behaviors:EllipsisBehavior Visibility="Collapsed" />
-            </Interactivity:Interaction.Behaviors>-->
+            </Interactivity:Interaction.Behaviors>
         </controls:PageHeader>
 
         <!--#region content-->
@@ -90,7 +90,15 @@
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE925;"  />
                     </Button>
                 <TextBox KeyDown="{x:Bind ViewModel.KeyDown}" 
-                    Grid.Column="1" x:Name="TextBox"  BorderThickness="1" BorderBrush="AliceBlue"  Margin="0,0,0,0" HorizontalAlignment="Stretch" RelativePanel.RightOf="ButtonDel" MaxHeight="180"  />
+                    Grid.Column="1" x:Name="TextBox"  BorderThickness="1" BorderBrush="AliceBlue"  
+                         HorizontalAlignment="Stretch" 
+                         InputScope="EmailSmtpAddress"
+                         IsTextPredictionEnabled="False"
+                         IsSpellCheckEnabled="False"
+                         PreventKeyboardDisplayOnProgrammaticFocus="True"
+                         RelativePanel.RightOf="ButtonDel" MaxHeight="180"  >
+                      
+                </TextBox>
                 
                 </Grid>
         </Grid>

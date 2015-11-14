@@ -21,6 +21,7 @@ namespace RemoteController.Views
     {
         public static Shell Instance { get; set; }
         public static HamburgerMenu HamburgerMenu { get { return Instance.MyHamburgerMenu; } }
+        public bool IsBusyVisible { get; set; }
 
         public Shell(NavigationService navigationService)
         {
@@ -37,6 +38,7 @@ namespace RemoteController.Views
                 switch (visible)
                 {
                     case Visibility.Visible:
+                        Instance.IsBusyVisible = true;
                         Instance.FindName(nameof(BusyScreen));
                         Instance.BusyText.Text = text ?? string.Empty;
                         if (VisualStateManager.GoToState(Instance, Instance.BusyVisualState.Name, true))
@@ -46,6 +48,7 @@ namespace RemoteController.Views
                         }
                         break;
                     case Visibility.Collapsed:
+                        Instance.IsBusyVisible = false;
                         if (VisualStateManager.GoToState(Instance, Instance.NormalVisualState.Name, true))
                         {
                             BootStrapper.Current.UpdateShellBackButton();

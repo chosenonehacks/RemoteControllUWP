@@ -26,7 +26,16 @@ namespace RemoteController.ViewModels
     {
         public SettingsPartViewModel SettingsPartViewModel { get; } = new SettingsPartViewModel();
         public AboutPartViewModel AboutPartViewModel { get; } = new AboutPartViewModel();
+
         
+        public override Task OnNavigatedFromAsync(IDictionary<string, object> state, bool suspending)
+        {
+            if (Views.Shell.Instance.IsBusyVisible)
+            {
+                Views.Shell.SetBusyVisibility(Visibility.Collapsed);
+            }
+            return base.OnNavigatedFromAsync(state, suspending);
+        }
     }
 
     public class SettingsPartViewModel : Mvvm.ViewModelBase
@@ -172,6 +181,13 @@ namespace RemoteController.ViewModels
             set { Set(ref _BusyText, value); }
         }
 
+        //private bool _IsShowingBusy;
+        //public bool IsShowingBusy
+        //{
+        //    get { return _IsShowingBusy; }
+        //    set { Set(ref _IsShowingBusy, value); }
+        //}
+
         public void ShowBusy()
         {
             Views.Shell.SetBusyVisibility(Visibility.Visible, _BusyText);
@@ -191,21 +207,31 @@ namespace RemoteController.ViewModels
                 
                     ShowBusy();
                     bool validAddress = await SendHttpRequest(ipAddressToCheck);
+                //IsShowingBusy = true;    
 
                 if (validAddress)
                 {
                     HideBusy();
                     _dialog = new DialogService();
                     await _dialog.ShowAsync("You can use this IP to control your Netgem or Netia box", "Good IP Address", new UICommand("OK"));
-                    //GoToPilotPage();
+
+                    //IsShowingBusy = false;
                 }
                 else
                 {
                     HideBusy();
                     _dialog = new DialogService();
                     await _dialog.ShowAsync("Can't connect to given address. Try different one!", "Wrong IP Address", new UICommand("OK"));
+
+                    //IsShowingBusy = false;
                 }
             }
+            else
+            {
+                _dialog = new DialogService();
+                await _dialog.ShowAsync("Check format of your IP address. Try different one!", "Wrong IP Address", new UICommand("OK"));
+            }
+            
         }
 
         private async Task<bool> SendHttpRequest(string ipAddressToCheck)
@@ -238,10 +264,15 @@ namespace RemoteController.ViewModels
 
         private bool IsValidIp(string ipAddressToCheck)
         {
-            if(ipAddressToCheck == null) throw new ArgumentException("ipAddressToCheck");
-
-            IPAddress ipAddres;
-            return IPAddress.TryParse(ipAddressToCheck, out ipAddres);
+            if (!String.IsNullOrWhiteSpace(ipAddressToCheck))
+            {
+                IPAddress ipAddres;
+                return IPAddress.TryParse(ipAddressToCheck, out ipAddres);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private async Task ScanLocalNetwork()
@@ -254,9 +285,10 @@ namespace RemoteController.ViewModels
                 List<IPAddress> IpAddressList = new List<IPAddress>();
                 IpAddressList = GetListOfLocalIpAddresses(localIpAddress);
 
+                ShowBusy();
                 foreach (var ipAddress in IpAddressList)
                 {
-                        ShowBusy();
+                        
                     //IsSearchingVisible = true; //show progress ring for list
 
                     var validAddress = await SendHttpRequest(ipAddress.ToString());

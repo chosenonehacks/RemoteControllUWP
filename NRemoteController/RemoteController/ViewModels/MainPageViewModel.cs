@@ -5,7 +5,6 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Windows.Storage.Streams;
 using Windows.UI.Popups;
-using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
@@ -13,6 +12,7 @@ using Windows.Web.Http.Headers;
 using RemoteController.Services.DialogService;
 using RemoteController.Services.SettingsServiceMyImplementation;
 using Template10.Mvvm;
+using Template10.Services.NavigationService;
 
 namespace RemoteController.ViewModels
 {
@@ -33,25 +33,13 @@ namespace RemoteController.ViewModels
         public async override void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             //No IpAdress saved go to settingsPage
-            if (IpAddress == String.Empty)
+            if (String.IsNullOrWhiteSpace(IpAddress))
             {
                 _dialog = new DialogService();
                 UICommand okBtn = new UICommand("OK");
                 await _dialog.ShowAsync("No IP settings is saved", "IP Setup",okBtn);
                 GotoSettingsPage();
             }
-                
-        }
-
-        public override Task OnNavigatedFromAsync(IDictionary<string, object> state, bool suspending)
-        {
-            
-            return base.OnNavigatedFromAsync(state, suspending);
-        }
-
-        public override void OnNavigatingFrom(NavigatingEventArgs args)
-        {
-            base.OnNavigatingFrom(args);
         }
 
         public string IpAddress
