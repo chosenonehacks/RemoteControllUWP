@@ -165,11 +165,10 @@ namespace RemoteController.ViewModels
             {
                 if (_checkIpAddressCommand == null)
                 {
-                    _checkIpAddressCommand = new DelegateCommand<string>((s) =>
+                    _checkIpAddressCommand = new DelegateCommand<string>(async (s) =>
                     {
-                        CheckIpAddress(s);
+                       await CheckIpAddressAsync(s);
                     });
-
                 }
                 return _checkIpAddressCommand;
             }
@@ -199,7 +198,7 @@ namespace RemoteController.ViewModels
             Views.Shell.SetBusyVisibility(Visibility.Collapsed);
         }
 
-        private async void CheckIpAddress(string ipAddressToCheck)
+        private async Task CheckIpAddressAsync(string ipAddressToCheck)
         {
             //TODO:validate IP
             if (IsValidIp(ipAddressToCheck))
@@ -207,7 +206,7 @@ namespace RemoteController.ViewModels
                 //TODO:send http request with answer
                 
                     ShowBusy();
-                    bool validAddress = await SendHttpRequest(ipAddressToCheck);
+                    bool validAddress = await SendHttpRequestAsync(ipAddressToCheck);
                 //IsShowingBusy = true;    
 
                 if (validAddress)
@@ -235,7 +234,7 @@ namespace RemoteController.ViewModels
             
         }
 
-        private async Task<bool> SendHttpRequest(string ipAddressToCheck)
+        private async Task<bool> SendHttpRequestAsync(string ipAddressToCheck)
         {
             HttpResponseMessage reposneMsg;
             string address = String.Empty;
@@ -292,7 +291,7 @@ namespace RemoteController.ViewModels
                         
                     //IsSearchingVisible = true; //show progress ring for list
 
-                    var validAddress = await SendHttpRequest(ipAddress.ToString());
+                    var validAddress = await SendHttpRequestAsync(ipAddress.ToString());
 
                     if (validAddress)
                     {
@@ -303,7 +302,7 @@ namespace RemoteController.ViewModels
             //Task<bool>[] tasks = new Task<bool>[IpAddressList.Count];
             //for (int i = 0; i < IpAddressList.Count; i++)
             //{
-            //    Task<bool> task = SendHttpRequest(IpAddressList[i].ToString());
+            //    Task<bool> task = SendHttpRequestAsync(IpAddressList[i].ToString());
             //    tasks[i] = task;
             //}
             //await Task.WhenAll(tasks);

@@ -122,7 +122,7 @@ namespace RemoteController.ViewModels
                     {
                         await client.PostAsync(uri, httpContent);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         _dialog = new DialogService();
                         await _dialog.ShowAsync("Connection to your box cannot be established. Please check your IP Address settings.", "Network Problem", new UICommand("OK"));

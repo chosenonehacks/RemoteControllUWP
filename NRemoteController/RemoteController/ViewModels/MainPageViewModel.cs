@@ -65,9 +65,9 @@ namespace RemoteController.ViewModels
             {
                 if (_setPilotCommand == null)
                 {
-                    _setPilotCommand = new DelegateCommand<string>((s) =>
+                    _setPilotCommand = new DelegateCommand<string>(async (s) =>
                     {
-                        SendRemoteCommand(s);
+                       await SendRemoteCommandAsync(s);
                     }/*, (pressedKey) => !string.IsNullOrEmpty(Value)*/); // can do check
 
                 }
@@ -89,7 +89,7 @@ namespace RemoteController.ViewModels
             }
         }
 
-        private async void SendRemoteCommand(string pressedKey)
+        private async Task SendRemoteCommandAsync(string pressedKey)
         {
             string address = String.Empty;
 
@@ -106,8 +106,15 @@ namespace RemoteController.ViewModels
                     request.RequestUri = new Uri(address);
                     
                     IHttpContent httpContent = new HttpStringContent(String.Empty);
-                    
-                    await client.PostAsync(uri, httpContent);
+                    try
+                    {
+                        await client.PostAsync(uri, httpContent);
+                    }
+                    catch (Exception)
+                    {
+                        _dialog = new DialogService();
+                        await _dialog.ShowAsync("Connection to your box cannot be established. Please check your IP Address settings.", "Network Problem", new UICommand("OK"));
+                    }
                     //HttpResponseMessage response = await client.PostAsync(uri, httpContent);
                     //var con = response.Content;
                 }
