@@ -61,7 +61,6 @@ namespace RemoteController.ViewModels
                     {
                        await SendRemoteCommandAsync(s);
                     }/*, (pressedKey) => !string.IsNullOrEmpty(Value)*/); // can do check
-
                 }
                 return _setPilotCommand;
             }
