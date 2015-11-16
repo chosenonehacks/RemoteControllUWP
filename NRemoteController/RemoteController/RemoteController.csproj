@@ -107,6 +107,7 @@
     <Compile Include="Services\DialogService\DialogHelper.cs" />
     <Compile Include="Services\DialogService\DialogService.cs" />
     <Compile Include="Services\DialogService\IDialogService.cs" />
+    <Compile Include="Services\RemoteController\RemoteController.cs" />
     <Compile Include="Services\SettingsServiceMyImplementation\ISettingsManager.cs" />
     <Compile Include="Services\SettingsServiceMyImplementation\LocalSettingsManager.cs" />
     <Compile Include="Services\SettingsServiceMyImplementation\RoamingSettingsManager.cs" />

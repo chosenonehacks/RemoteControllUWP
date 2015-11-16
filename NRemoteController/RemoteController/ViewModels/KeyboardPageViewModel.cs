@@ -16,17 +16,20 @@ namespace RemoteController.ViewModels
     public class KeyboardPageViewModel : RemoteController.Mvvm.ViewModelBase
     {
         private readonly ISettingsManager _manager;
-        private DialogService _dialog;
+        private readonly DialogService _dialog;
+        private readonly Services.RemoteController.RemoteController _remoteController;
 
         public KeyboardPageViewModel()
         {
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
                 _manager = new LocalSettingsManager();
+                _remoteController = new Services.RemoteController.RemoteController(IpAddress);
+                _dialog = new DialogService();
             }
         }
 
-        public void KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        public async void KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Shift)
                 return;
@@ -39,46 +42,46 @@ namespace RemoteController.ViewModels
             switch (key)
             {
                 case VirtualKey.Number0:
-                    SendRemoteCommand("0");
+                    await SendRemoteCommand("0");
                     break;
                 case VirtualKey.Number1:
-                    SendRemoteCommand("1");
+                    await SendRemoteCommand("1");
                     break;
                 case VirtualKey.Number2:
-                    SendRemoteCommand("2");
+                    await SendRemoteCommand("2");
                     break;
                 case VirtualKey.Number3:
-                    SendRemoteCommand("3");
+                    await SendRemoteCommand("3");
                     break;
                 case VirtualKey.Number4:
-                    SendRemoteCommand("4");
+                    await SendRemoteCommand("4");
                     break;
                 case VirtualKey.Number5:
-                    SendRemoteCommand("5");
+                    await SendRemoteCommand("5");
                     break;
                 case VirtualKey.Number6:
-                    SendRemoteCommand("6");
+                    await SendRemoteCommand("6");
                     break;
                 case VirtualKey.Number7:
-                    SendRemoteCommand("7");
+                    await SendRemoteCommand("7");
                     break;
                 case VirtualKey.Number8:
-                    SendRemoteCommand("8");
+                    await SendRemoteCommand("8");
                     break;
                 case VirtualKey.Number9:
-                    SendRemoteCommand("9");
+                    await SendRemoteCommand("9");
                     break;
                 case VirtualKey.Back:
-                    SendRemoteCommand("delete");
+                    await SendRemoteCommand("delete");
                     break;
                 case VirtualKey.Space:
-                    SendRemoteCommand("KEY_SPACE");
+                    await SendRemoteCommand("KEY_SPACE");
                     break;
                 case VirtualKey.Enter:
-                    SendRemoteCommand("ok");
+                    await SendRemoteCommand("ok");
                     break;
                 default:
-                    SendRemoteCommand(key.ToString());
+                    await SendRemoteCommand(key.ToString());
                     break;
             }
         }
@@ -91,44 +94,22 @@ namespace RemoteController.ViewModels
             {
                 if (_setPilotCommand == null)
                 {
-                    _setPilotCommand = new DelegateCommand<string>((s) =>
+                    _setPilotCommand = new DelegateCommand<string>(async (s) =>
                     {
-                        SendRemoteCommand(s);
-                    }/*, (pressedKey) => !string.IsNullOrEmpty(Value)*/); // can do check
-
+                        await SendRemoteCommand(s);
+                    });
                 }
                 return _setPilotCommand;
             }
         }
 
-        private async void SendRemoteCommand(string pressedKey)
+        private async Task SendRemoteCommand(string pressedKey)
         {
-            string address = String.Empty;
+            var result = await _remoteController.SendRemoteCommandAsync(pressedKey);
 
-            if (!string.IsNullOrEmpty(pressedKey) && !string.IsNullOrEmpty(IpAddress))
+            if (!result)
             {
-                address = "http://" + IpAddress + "/RemoteControl/KeyHandling/sendKey?key=" + pressedKey;
-
-                var uri = new Uri(address, UriKind.Absolute);
-
-                using (HttpClient client = new HttpClient())
-                {
-                    HttpRequestMessage request = new HttpRequestMessage();
-
-                    request.RequestUri = new Uri(address);
-
-                    IHttpContent httpContent = new HttpStringContent(String.Empty);
-                    try
-                    {
-                        await client.PostAsync(uri, httpContent);
-                    }
-                    catch (Exception)
-                    {
-                        _dialog = new DialogService();
-                        await _dialog.ShowAsync("Connection to your box cannot be established. Please check your IP Address settings.", "Network Problem", new UICommand("OK"));
-                    }
-                    
-                }
+                await _dialog.ShowAsync("Connection to your box cannot be established. Please check your IP Address settings.", "Network Problem", new UICommand("OK"));
             }
         }
 

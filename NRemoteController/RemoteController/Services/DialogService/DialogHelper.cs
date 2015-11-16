@@ -7,7 +7,8 @@ namespace RemoteController.Services.DialogService
 {
     public class DialogHelper
     {
-        bool _open = false;
+        public bool IsOpen { get; set; }
+
         public DialogHelper()
         {
             // not thread safe
@@ -25,17 +26,17 @@ namespace RemoteController.Services.DialogService
 
         public async Task ShowAsync(string content, string title = default(string), params UICommand[] commands)
         {
-            while (_open)
+            while (IsOpen)
             {
                 await Task.Delay(1000);
             }
-            _open = true;
+            IsOpen = true;
             var dialog = (title == default(string))? new MessageDialog(content) : new MessageDialog(content, title);
             if (commands != null && commands.Any())
                 foreach (var item in commands)
                     dialog.Commands.Add(item);
             await dialog.ShowAsync();
-            _open = false;
+            IsOpen = false;
         }
     }
 }

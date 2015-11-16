@@ -14,11 +14,13 @@ namespace RemoteController.Services.DialogService
 
         public async Task ShowAsync(string content, string title = default(string))
         {
+            
             await this._helper.ShowAsync(content, title);
         }
 
         public async Task ShowAsync(string content, string title, params UICommand[] commands)
         {
+            
             await this._helper.ShowAsync(content, title, commands);
         }
     }

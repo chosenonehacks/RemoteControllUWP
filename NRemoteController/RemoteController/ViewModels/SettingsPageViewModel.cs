@@ -288,9 +288,6 @@ namespace RemoteController.ViewModels
                 ShowBusy();
                 foreach (var ipAddress in IpAddressList)
                 {
-                        
-                    //IsSearchingVisible = true; //show progress ring for list
-
                     var validAddress = await SendHttpRequestAsync(ipAddress.ToString());
 
                     if (validAddress)
