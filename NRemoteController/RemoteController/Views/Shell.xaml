@@ -35,7 +35,7 @@
                     </StackPanel>
                 </Controls:HamburgerButtonInfo>
 
-                <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
+                <!--<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
                     <StackPanel Orientation="Horizontal">
                         <SymbolIcon Width="48" Height="48" Symbol="List" />
                         <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="Program" />
@@ -54,7 +54,7 @@
                         <SymbolIcon Width="48" Height="48" Symbol="SwitchApps" />
                         <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="Apps" />
                     </StackPanel>
-                </Controls:HamburgerButtonInfo>
+                </Controls:HamburgerButtonInfo>-->
 
 
 
@@ -64,7 +64,7 @@
                 <Controls:HamburgerButtonInfo PageType="views:SettingsPage">
                     <StackPanel Orientation="Horizontal">
                         <SymbolIcon Width="48" Height="48" Symbol="Setting" />
-                        <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="Settings" />
+                        <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="Ustawienia" />
                     </StackPanel>
                 </Controls:HamburgerButtonInfo>
             </Controls:HamburgerMenu.SecondaryButtons>

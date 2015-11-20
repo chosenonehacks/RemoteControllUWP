@@ -29,7 +29,7 @@
         </controls:PageHeader>
         
         <Grid Grid.Row="1">
-            <Button Content="test" Click="{x:Bind ViewModel.GetChannelsListAsync}"/>
+            <!--<Button Content="test" Click="{x:Bind ViewModel.GetChannelsListAsync}"/>-->
         </Grid>
         
     </Grid>

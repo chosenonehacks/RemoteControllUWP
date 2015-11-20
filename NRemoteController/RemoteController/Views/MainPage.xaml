@@ -51,7 +51,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <controls:PageHeader BackButtonVisibility="Collapsed" Content="Remote Control" Frame="{x:Bind Frame, Mode=OneWay}">
+        <controls:PageHeader BackButtonVisibility="Collapsed" Content="Pilot" Frame="{x:Bind Frame, Mode=OneWay}">
             <Interactivity:Interaction.Behaviors>
                 <Behaviors:EllipsisBehavior Visibility="Collapsed" />
             </Interactivity:Interaction.Behaviors>
@@ -89,21 +89,21 @@
                 </PivotItem>
                 <PivotItem>
                     <PivotItem.Header>
-                        <views:TabHeader Label="play" Glyph="&#xE102;" />
-                    </PivotItem.Header>
-                    <StackPanel Orientation="Vertical">
-                        <userControls:PilotTopUserControl/>
-                        <userControls:PilotPlayUserControl/>
-                        <userControls:PilotBottomUserControl/>
-                    </StackPanel>
-                </PivotItem>
-                <PivotItem>
-                    <PivotItem.Header>
                         <views:TabHeader Label="123 Abc" Glyph="&#xE1D0;" />
                     </PivotItem.Header>
                     <StackPanel Orientation="Vertical">
                         <userControls:PilotTopUserControl/>
                         <userControls:PilotNumPadUserControl/>
+                        <userControls:PilotBottomUserControl/>
+                    </StackPanel>
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <views:TabHeader Label="play" Glyph="&#xE102;" />
+                    </PivotItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <userControls:PilotTopUserControl/>
+                        <userControls:PilotPlayUserControl/>
                         <userControls:PilotBottomUserControl/>
                     </StackPanel>
                 </PivotItem>

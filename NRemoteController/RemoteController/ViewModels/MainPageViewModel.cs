@@ -32,7 +32,7 @@ namespace RemoteController.ViewModels
             if (String.IsNullOrWhiteSpace(IpAddress))
             {
                 UICommand okBtn = new UICommand("OK");
-                await _dialog.ShowAsync("No IP settings is saved.", "IP Setup",okBtn);
+                await _dialog.ShowAsync("Adres IP nie jest skonfigurowaney.", "Ustawienia adresu IP",okBtn);
                 GotoSettingsPage();
             }
         }
@@ -77,7 +77,7 @@ namespace RemoteController.ViewModels
 
             if (!result)
             {
-                await _dialog.ShowAsync("Connection to your box cannot be established. Please check your IP Address settings.", "Network Problem", new UICommand("OK"));
+                await _dialog.ShowAsync("Po³¹czenie do dekodera Netia nie mo¿e byæ ustanowione. Proszê sprawdziæ ustawienia adresu IP.", "Problem z sieci¹", new UICommand("OK"));
             }
         }
     }

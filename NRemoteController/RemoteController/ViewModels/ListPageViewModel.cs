@@ -35,11 +35,12 @@ namespace RemoteController.ViewModels
             set { Set(ref _listOfTvChannels, value); }
         }
 
-        public async Task GetChannelsListAsync()
-        {
-            ListOfTvChannels = new List<TvChannels>();
-            ListOfTvChannels = _remoteController.GetChannelListAsync().Result;
-        }
+        //TODO:maybe in future add rest of functions that are on android and IOS version
+        //public async Task GetChannelsListAsync()
+        //{
+        //    ListOfTvChannels = new List<TvChannels>();
+        //    ListOfTvChannels = await _remoteController.GetChannelListAsync();
+        //}
 
         public string IpAddress => _manager.Load<string>("IpSetting", String.Empty);
     }

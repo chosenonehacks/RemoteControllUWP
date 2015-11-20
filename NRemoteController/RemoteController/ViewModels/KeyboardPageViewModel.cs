@@ -109,7 +109,7 @@ namespace RemoteController.ViewModels
 
             if (!result)
             {
-                await _dialog.ShowAsync("Connection to your box cannot be established. Please check your IP Address settings.", "Network Problem", new UICommand("OK"));
+                await _dialog.ShowAsync("Połączenie do dekodera Netia nie może być ustanowione. Proszę sprawdzić ustawienia adresu IP.", "Problem z siecią", new UICommand("OK"));
             }
         }
 

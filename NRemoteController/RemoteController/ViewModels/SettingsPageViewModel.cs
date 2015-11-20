@@ -174,7 +174,7 @@ namespace RemoteController.ViewModels
             }
         }
 
-        private string _BusyText = "Please wait...";
+        private string _BusyText = "Proszê czekaæ..";
         public string BusyText
         {
             get { return _BusyText; }
@@ -207,29 +207,27 @@ namespace RemoteController.ViewModels
                 
                     ShowBusy();
                     bool validAddress = await SendHttpRequestAsync(ipAddressToCheck);
-                //IsShowingBusy = true;    
+                   
 
                 if (validAddress)
                 {
                     HideBusy();
                     _dialog = new DialogService();
-                    await _dialog.ShowAsync("You can use this IP to control your Netgem or Netia box", "Good IP Address", new UICommand("OK"));
-
-                    //IsShowingBusy = false;
+                    await _dialog.ShowAsync("Ten adres IP jest prawid³owy", "Dobry adres IP", new UICommand("OK"));
+                    
                 }
                 else
                 {
                     HideBusy();
                     _dialog = new DialogService();
-                    await _dialog.ShowAsync("Can't connect to given address. Try different one!", "Wrong IP Address", new UICommand("OK"));
-
-                    //IsShowingBusy = false;
+                    await _dialog.ShowAsync("Nie mogê po³¹czyæ do wskazanego adresu IP, spróbuj inny.", "Z³y Adres IP", new UICommand("OK"));
+                    
                 }
             }
             else
             {
                 _dialog = new DialogService();
-                await _dialog.ShowAsync("Check format of your IP address. Try different one!", "Wrong IP Address", new UICommand("OK"));
+                await _dialog.ShowAsync("Z³y format adresu IP, wprowadŸ poprawny", "Z³y Adres IP", new UICommand("OK"));
             }
             
         }
@@ -238,9 +236,7 @@ namespace RemoteController.ViewModels
         {
             HttpResponseMessage reposneMsg;
             string address = String.Empty;
-
-            //TEMP
-            //ipAddressToCheck = "192.168.1.4";
+            
 
             address = "http://" + ipAddressToCheck + "/RemoteControl/Volume/get";
             var uri = new Uri(address, UriKind.Absolute);
@@ -296,30 +292,32 @@ namespace RemoteController.ViewModels
                         break;
                     }
                 }
-            //Task<bool>[] tasks = new Task<bool>[IpAddressList.Count];
-            //for (int i = 0; i < IpAddressList.Count; i++)
-            //{
-            //    Task<bool> task = SendHttpRequestAsync(IpAddressList[i].ToString());
-            //    tasks[i] = task;
-            //}
-            //await Task.WhenAll(tasks);
+                #region Task.WhenAll
+                //Task<bool>[] tasks = new Task<bool>[IpAddressList.Count];
+                //for (int i = 0; i < IpAddressList.Count; i++)
+                //{
+                //    Task<bool> task = SendHttpRequestAsync(IpAddressList[i].ToString());
+                //    tasks[i] = task;
+                //}
+                //await Task.WhenAll(tasks);
 
-            //for (int i = 0; i < tasks.Length; i++)
-            //{
-            //    if (tasks[i].Result)
-            //    {
-            //        ListOfScannedIpAddresses.Add(IpAddressList[i].ToString());
-            //    }
-            //}
+                //for (int i = 0; i < tasks.Length; i++)
+                //{
+                //    if (tasks[i].Result)
+                //    {
+                //        ListOfScannedIpAddresses.Add(IpAddressList[i].ToString());
+                //    }
+                //}
+                #endregion
 
-            IsIpListVisible = true;
-                //IsSearchingVisible = false;
+                IsIpListVisible = true;
+                
                 HideBusy();
                 if (!ListOfScannedIpAddresses.Any())
                 {
                     _dialog = new DialogService();
                     await
-                        _dialog.ShowAsync("Can't find any valid address. Is your box connected to same local network?",
+                        _dialog.ShowAsync("Nie mogê znaleœæ dekodera w tej sieci. Czy Twój dekoder jest w tej samej sieci?",
                             "Wrong Network", new UICommand("OK"));
                     IsIpListVisible = false;
                 }
@@ -328,8 +326,8 @@ namespace RemoteController.ViewModels
             {
                 _dialog = new DialogService();
                 await
-                    _dialog.ShowAsync("You are not conected to any LAN / WiFi network.",
-                        "Network interface down", new UICommand("OK"));
+                    _dialog.ShowAsync("Nie jesteœ po³aczony z ¿adn¹ sieci¹.",
+                        "Brak po³¹czenia z sieci¹.", new UICommand("OK"));
                 IsIpListVisible = false;
             }
 

@@ -23,7 +23,7 @@
 
         <!--  header  -->
 
-        <controls:PageHeader Frame="{x:Bind Frame, Mode=OneWay}" Content="Settings Page" >
+        <controls:PageHeader Frame="{x:Bind Frame, Mode=OneWay}" Content="Ustawienia" >
             <Interactivity:Interaction.Behaviors>
                 <Behaviors:EllipsisBehavior Visibility="Collapsed" />
             </Interactivity:Interaction.Behaviors>    
@@ -32,18 +32,18 @@
         <!--  #region content  -->
 
         <Pivot Grid.Row="1">
-            <PivotItem DataContext="{Binding SettingsPartViewModel}" Header="Settings">
+            <PivotItem DataContext="{Binding SettingsPartViewModel}" Header="Ustawienia">
                 <ScrollViewer Margin="0,12,-12,0" HorizontalContentAlignment="Left" VerticalAlignment="Top" VerticalScrollBarVisibility="Auto">
                     
                     <RelativePanel >
                         
-                        <ToggleSwitch x:Name="UseLightThemeToggleSwitch" Header="Use Light Theme"
+                        <ToggleSwitch x:Name="UseLightThemeToggleSwitch" Header="Zmieñ styl aplikacji"
                                       IsOn="{Binding UseLightThemeButton, Mode=TwoWay}"
-                                      OffContent="Dark theme" OnContent="Light theme"/>
+                                      OffContent="Czarny styl aplikacji" OnContent="Jasny styl aplikacji"/>
                         
                         <TextBox x:Name="IpAddressTextBox" 
                                  Margin="0,12,0,0" HorizontalAlignment="Left"
-                                 Header="Saved IP Address of your box"
+                                 Header="Zapisany adres IP"
                                  InputScope="Number"
                                  IsTextPredictionEnabled="False"
                                  IsSpellCheckEnabled="False"
@@ -82,7 +82,7 @@
                     
                 </ScrollViewer>
             </PivotItem>
-            <PivotItem Header="About">
+            <PivotItem Header="O aplikacji">
                 <Grid DataContext="{Binding AboutPartViewModel}">
                     <Border HorizontalAlignment="Right" VerticalAlignment="Top"
                             BorderBrush="DimGray" BorderThickness="1"
