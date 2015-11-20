@@ -60,7 +60,7 @@
                                 </StackPanel>
                             <StackPanel RelativePanel.Below="ButtonScan">
                         <ListView x:Name="ListViewIPAdresses" Margin="0,5,0,0"  
-                                  Header="Found IP:"
+                                  Header="Znaleziony adres:"
                                   ItemsSource="{Binding ListOfScannedIpAddresses}"      
                                   Visibility="{Binding IsIpListVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   SelectionChanged="{x:Bind ViewModel.SettingsPartViewModel.SelectIpAddressFromList }">
