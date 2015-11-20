@@ -77,7 +77,7 @@ namespace RemoteController.ViewModels
 
             if (!result)
             {
-                await _dialog.ShowAsync("Po³¹czenie do dekodera Netia nie mo¿e byæ ustanowione. Proszê sprawdziæ ustawienia adresu IP.", "Problem z sieci¹", new UICommand("OK"));
+                await _dialog.ShowAsync("PoÅ‚Ä…czenie do dekodera Netia nie moÅ¼e byÄ‡ ustanowione. ProszÄ™ sprawdziÄ‡ ustawienia adresu IP.", "Problem z sieciÄ…", new UICommand("OK"));
             }
         }
     }

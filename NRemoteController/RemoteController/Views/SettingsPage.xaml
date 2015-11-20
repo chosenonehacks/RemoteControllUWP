@@ -37,7 +37,7 @@
                     
                     <RelativePanel >
                         
-                        <ToggleSwitch x:Name="UseLightThemeToggleSwitch" Header="Zmie� styl aplikacji"
+                        <ToggleSwitch x:Name="UseLightThemeToggleSwitch" Header="Zmień styl aplikacji"
                                       IsOn="{Binding UseLightThemeButton, Mode=TwoWay}"
                                       OffContent="Czarny styl aplikacji" OnContent="Jasny styl aplikacji"/>
                         
@@ -48,14 +48,14 @@
                                  IsTextPredictionEnabled="False"
                                  IsSpellCheckEnabled="False"
                                  Text="{Binding IpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.Below="UseLightThemeToggleSwitch"/>
-                        <Button x:Name="ButtonCheck" Margin="5,40,0,0" Content="Check IP" RelativePanel.RightOf="IpAddressTextBox" RelativePanel.Below="UseLightThemeToggleSwitch"
+                        <Button x:Name="ButtonCheck" Margin="5,40,0,0" Content="Sprawdź wprowadzony IP" RelativePanel.RightOf="IpAddressTextBox" RelativePanel.Below="UseLightThemeToggleSwitch"
                                 Command="{Binding CheckIpAddressCommand}" CommandParameter="{Binding IpAddress}"/>
-                        <Button x:Name="ButtonScan" Margin="0,5,0,0" Content="Scan local network" RelativePanel.Below="IpAddressTextBox"
+                        <Button x:Name="ButtonScan" Margin="0,5,0,0" Content="Skanuj sieć lokalną" RelativePanel.Below="IpAddressTextBox"
                                 Visibility="{Binding IsIpListVisible, Converter={StaticResource InverseBooleanToVisibilityConverter}}" 
                                 
                                 Command="{Binding ScanNetworkCommand}"/>
                                 <StackPanel Orientation="Vertical" RelativePanel.Below="ButtonScan" Margin="100,50,0,0" Visibility="{Binding IsSearchingVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock>Searching...</TextBlock>
+                                    <TextBlock>Skanuje sieć...</TextBlock>
                                     <ProgressRing IsActive="True"  RelativePanel.Below="ButtonScan"/>
                                 </StackPanel>
                             <StackPanel RelativePanel.Below="ButtonScan">

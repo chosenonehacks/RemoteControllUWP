@@ -174,7 +174,7 @@ namespace RemoteController.ViewModels
             }
         }
 
-        private string _BusyText = "Proszê czekaæ..";
+        private string _BusyText = "ProszÄ™ czekaÄ‡..";
         public string BusyText
         {
             get { return _BusyText; }
@@ -213,21 +213,21 @@ namespace RemoteController.ViewModels
                 {
                     HideBusy();
                     _dialog = new DialogService();
-                    await _dialog.ShowAsync("Ten adres IP jest prawid³owy", "Dobry adres IP", new UICommand("OK"));
+                    await _dialog.ShowAsync("Ten adres IP jest prawidÅ‚owy!", "Adres IP", new UICommand("OK"));
                     
                 }
                 else
                 {
                     HideBusy();
                     _dialog = new DialogService();
-                    await _dialog.ShowAsync("Nie mogê po³¹czyæ do wskazanego adresu IP, spróbuj inny.", "Z³y Adres IP", new UICommand("OK"));
+                    await _dialog.ShowAsync("Nie mogÄ™ poÅ‚Ä…czyÄ‡ do wskazanego adresu IP, sprÃ³buj inny adres.", "Adres IP", new UICommand("OK"));
                     
                 }
             }
             else
             {
                 _dialog = new DialogService();
-                await _dialog.ShowAsync("Z³y format adresu IP, wprowadŸ poprawny", "Z³y Adres IP", new UICommand("OK"));
+                await _dialog.ShowAsync("ZÅ‚y format adresu IP, wprowadÅº poprawny", "ZÅ‚y Adres IP", new UICommand("OK"));
             }
             
         }
@@ -317,7 +317,7 @@ namespace RemoteController.ViewModels
                 {
                     _dialog = new DialogService();
                     await
-                        _dialog.ShowAsync("Nie mogê znaleœæ dekodera w tej sieci. Czy Twój dekoder jest w tej samej sieci?",
+                        _dialog.ShowAsync("Nie mogÄ™ znaleÅ›Ä‡ dekodera w tej sieci. Czy TwÃ³j dekoder jest w tej samej sieci?",
                             "Wrong Network", new UICommand("OK"));
                     IsIpListVisible = false;
                 }
@@ -326,8 +326,8 @@ namespace RemoteController.ViewModels
             {
                 _dialog = new DialogService();
                 await
-                    _dialog.ShowAsync("Nie jesteœ po³aczony z ¿adn¹ sieci¹.",
-                        "Brak po³¹czenia z sieci¹.", new UICommand("OK"));
+                    _dialog.ShowAsync("Nie jesteÅ› poÅ‚aczony z Å¼adnÄ… sieciÄ….",
+                        "Brak poÅ‚Ä…czenia z sieciÄ….", new UICommand("OK"));
                 IsIpListVisible = false;
             }
 
@@ -367,7 +367,7 @@ namespace RemoteController.ViewModels
 
         public List<IPAddress> GetListOfLocalIpAddresses(string iPAddress)
         {
-            //TODO: dodaæ mozliwosc skoanowania zakresów dla innych podsieci
+            //TODO: dodaÄ‡ mozliwosc skoanowania zakresÃ³w dla innych podsieci
             //iPAddress = "192.168.2.10";
 
             List<IPAddress> LocalNetworkIpList = new List<IPAddress>();
