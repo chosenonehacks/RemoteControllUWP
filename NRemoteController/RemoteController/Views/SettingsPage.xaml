@@ -23,7 +23,7 @@
 
         <!--  header  -->
 
-        <controls:PageHeader Frame="{x:Bind Frame, Mode=OneWay}" Content="Ustawienia" >
+        <controls:PageHeader Frame="{x:Bind Frame, Mode=OneWay}" x:Uid="SettingsPageHeader" Content="~PlaceHolderUstawienia" >
             <Interactivity:Interaction.Behaviors>
                 <Behaviors:EllipsisBehavior Visibility="Collapsed" />
             </Interactivity:Interaction.Behaviors>    
@@ -32,35 +32,35 @@
         <!--  #region content  -->
 
         <Pivot Grid.Row="1">
-            <PivotItem DataContext="{Binding SettingsPartViewModel}" Header="Ustawienia">
+            <PivotItem DataContext="{Binding SettingsPartViewModel}" x:Uid="SettingsPivot" Header="Ustawienia">
                 <ScrollViewer Margin="0,12,-12,0" HorizontalContentAlignment="Left" VerticalAlignment="Top" VerticalScrollBarVisibility="Auto">
                     
                     <RelativePanel >
-                        
-                        <ToggleSwitch x:Name="UseLightThemeToggleSwitch" Header="Zmień styl aplikacji"
+
+                        <ToggleSwitch x:Name="UseLightThemeToggleSwitch" Header="~PlaceHolderZmień styl aplikacji" x:Uid="ThemeTogleSwitch"
                                       IsOn="{Binding UseLightThemeButton, Mode=TwoWay}"
-                                      OffContent="Czarny styl aplikacji" OnContent="Jasny styl aplikacji"/>
-                        
-                        <TextBox x:Name="IpAddressTextBox" 
+                                      OffContent="~PlaceHolderCzarny styl aplikacji" OnContent="~PlaceHolderJasny styl aplikacji"/>
+
+                        <TextBox x:Name="IpAddressTextBox" x:Uid="IpAddressTextBox"
                                  Margin="0,12,0,0" HorizontalAlignment="Left"
-                                 Header="Zapisany adres IP"
+                                 Header="~PlaceHolderZapisany adres IP"
                                  InputScope="Number"
                                  IsTextPredictionEnabled="False"
                                  IsSpellCheckEnabled="False"
                                  Text="{Binding IpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.Below="UseLightThemeToggleSwitch"/>
-                        <Button x:Name="ButtonCheck" Margin="5,40,0,0" Content="Sprawdź wprowadzony IP" RelativePanel.RightOf="IpAddressTextBox" RelativePanel.Below="UseLightThemeToggleSwitch"
+                        <Button x:Name="ButtonCheck" x:Uid="ButtonCheck" Margin="5,40,0,0" Content="~PlaceHolderSprawdź adres IP" RelativePanel.RightOf="IpAddressTextBox" RelativePanel.Below="UseLightThemeToggleSwitch"
                                 Command="{Binding CheckIpAddressCommand}" CommandParameter="{Binding IpAddress}"/>
-                        <Button x:Name="ButtonScan" Margin="0,5,0,0" Content="Skanuj sieć lokalną" RelativePanel.Below="IpAddressTextBox"
+                        <Button x:Name="ButtonScan" x:Uid="ButtonScan" Margin="0,5,0,0" Content="~PlaceHolderSkanuj sieć lokalną" RelativePanel.Below="IpAddressTextBox"
                                 Visibility="{Binding IsIpListVisible, Converter={StaticResource InverseBooleanToVisibilityConverter}}" 
                                 
                                 Command="{Binding ScanNetworkCommand}"/>
                                 <StackPanel Orientation="Vertical" RelativePanel.Below="ButtonScan" Margin="100,50,0,0" Visibility="{Binding IsSearchingVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock>Skanuje sieć...</TextBlock>
+                                    <TextBlock x:Uid="ScanningTextBlock" Text="~PlaceHolderSkanuje sieć..."/>
                                     <ProgressRing IsActive="True"  RelativePanel.Below="ButtonScan"/>
                                 </StackPanel>
                             <StackPanel RelativePanel.Below="ButtonScan">
-                        <ListView x:Name="ListViewIPAdresses" Margin="0,5,0,0"  
-                                  Header="Znaleziony adres:"
+                        <ListView x:Name="ListViewIPAdresses" Margin="0,5,0,0" x:Uid="FoundIPListView" 
+                                  Header="~PlaceHolderZnaleziony adres:"
                                   ItemsSource="{Binding ListOfScannedIpAddresses}"      
                                   Visibility="{Binding IsIpListVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   SelectionChanged="{x:Bind ViewModel.SettingsPartViewModel.SelectIpAddressFromList }">
@@ -82,7 +82,7 @@
                     
                 </ScrollViewer>
             </PivotItem>
-            <PivotItem Header="O aplikacji">
+            <PivotItem x:Uid="AboutPivot" Header="~PlaceHolderO aplikacji">
                 <Grid DataContext="{Binding AboutPartViewModel}">
                     <Border HorizontalAlignment="Right" VerticalAlignment="Top"
                             BorderBrush="DimGray" BorderThickness="1"

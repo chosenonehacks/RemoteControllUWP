@@ -31,7 +31,7 @@
                 <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
                     <StackPanel Orientation="Horizontal">
                         <SymbolIcon Width="48" Height="48" Symbol="Calculator" />
-                        <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="Pilot" />
+                        <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="~PlaceHolderPilot" x:Uid="HamburgerMenuTexblockPilot"/>
                     </StackPanel>
                 </Controls:HamburgerButtonInfo>
 
@@ -64,7 +64,7 @@
                 <Controls:HamburgerButtonInfo PageType="views:SettingsPage">
                     <StackPanel Orientation="Horizontal">
                         <SymbolIcon Width="48" Height="48" Symbol="Setting" />
-                        <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="Ustawienia" />
+                        <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="~PlaceHolderUstawienia" x:Uid="HamburgerMenuTexblockSettings"/>
                     </StackPanel>
                 </Controls:HamburgerButtonInfo>
             </Controls:HamburgerMenu.SecondaryButtons>

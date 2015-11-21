@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.System;
 using Windows.UI.Popups;
 using Windows.Web.Http;
@@ -16,8 +17,9 @@ namespace RemoteController.ViewModels
     public class KeyboardPageViewModel : RemoteController.Mvvm.ViewModelBase
     {
         private readonly ISettingsManager _manager;
-        private readonly DialogService _dialog;
+        private DialogService _dialog;
         private readonly Services.RemoteController.RemoteController _remoteController;
+        private ResourceLoader _loader;
 
         public KeyboardPageViewModel()
         {
@@ -25,7 +27,7 @@ namespace RemoteController.ViewModels
             {
                 _manager = new LocalSettingsManager();
                 _remoteController = new Services.RemoteController.RemoteController(IpAddress);
-                _dialog = new DialogService();
+                _loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
             }
         }
 
@@ -109,10 +111,20 @@ namespace RemoteController.ViewModels
 
             if (!result)
             {
-                await _dialog.ShowAsync("Połączenie do dekodera Netia nie może być ustanowione. Proszę sprawdzić ustawienia adresu IP.", "Problem z siecią", new UICommand("OK"));
+                await ShowDialogAsync("NoConnection");
             }
         }
 
         public string IpAddress => _manager.Load<string>("IpSetting", String.Empty);
+
+        private async Task ShowDialogAsync(string message)
+        {
+            _dialog = new DialogService();
+
+            var messageHeader = _loader.GetString(string.Format("{0}Header", message));
+            var messageContent = _loader.GetString(string.Format("{0}Content", message));
+
+            await _dialog.ShowAsync(messageContent, messageHeader, new UICommand("OK"));
+        }
     }
 }

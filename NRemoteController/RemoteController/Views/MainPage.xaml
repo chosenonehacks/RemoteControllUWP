@@ -51,7 +51,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <controls:PageHeader BackButtonVisibility="Collapsed" Content="Pilot" Frame="{x:Bind Frame, Mode=OneWay}">
+        <controls:PageHeader BackButtonVisibility="Collapsed" Content="~PlaceHolerPilot" Frame="{x:Bind Frame, Mode=OneWay}" x:Uid="MainPageHeader">
             <Interactivity:Interaction.Behaviors>
                 <Behaviors:EllipsisBehavior Visibility="Collapsed" />
             </Interactivity:Interaction.Behaviors>

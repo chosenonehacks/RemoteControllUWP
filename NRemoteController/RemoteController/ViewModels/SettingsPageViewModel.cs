@@ -7,7 +7,9 @@ using System.Net;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Networking.Connectivity;
 using Windows.Networking.Sockets;
 using Windows.UI.Popups;
@@ -44,15 +46,21 @@ namespace RemoteController.ViewModels
         private Services.SettingsServices.SettingsService _settings;
         private ISettingsManager _manager;
         private DialogService _dialog;
+        private ResourceLoader _loader;
+
+
 
         public SettingsPartViewModel()
         {
+            
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
                 _settings = Services.SettingsServices.SettingsService.Instance;
                 _manager = new LocalSettingsManager();
+                _loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
             }
             
+            _BusyText = _loader.GetString("WaitMessage");
         }
 
         public bool UseShellBackButton
@@ -174,7 +182,7 @@ namespace RemoteController.ViewModels
             }
         }
 
-        private string _BusyText = "Proszę czekać..";
+        private string _BusyText;
         public string BusyText
         {
             get { return _BusyText; }
@@ -212,24 +220,33 @@ namespace RemoteController.ViewModels
                 if (validAddress)
                 {
                     HideBusy();
-                    _dialog = new DialogService();
-                    await _dialog.ShowAsync("Ten adres IP jest prawidłowy!", "Adres IP", new UICommand("OK"));
-                    
+                    await ShowDialogAsync("OkIP");
                 }
                 else
                 {
                     HideBusy();
-                    _dialog = new DialogService();
-                    await _dialog.ShowAsync("Nie mogę połączyć do wskazanego adresu IP, spróbuj inny adres.", "Adres IP", new UICommand("OK"));
-                    
+                    await ShowDialogAsync("BadIP");
+                    //await _dialog.ShowAsync("Nie mogę połączyć do wskazanego adresu IP, spróbuj inny adres.", "Adres IP", new UICommand("OK"));
+
                 }
             }
             else
             {
-                _dialog = new DialogService();
-                await _dialog.ShowAsync("Zły format adresu IP, wprowadź poprawny", "Zły Adres IP", new UICommand("OK"));
+                await ShowDialogAsync("WrongFormatIP");
+                //await _dialog.ShowAsync("Zły format adresu IP, wprowadź poprawny", "Zły Adres IP", new UICommand("OK"));
             }
             
+        }
+
+        private async Task ShowDialogAsync(string message)
+        {
+            _dialog = new DialogService();
+            
+            var messageHeader = _loader.GetString(string.Format("{0}Header", message));
+            var messageContent = _loader.GetString(string.Format("{0}Content", message));
+            
+
+            await _dialog.ShowAsync(messageContent, messageHeader, new UICommand("OK"));
         }
 
         private async Task<bool> SendHttpRequestAsync(string ipAddressToCheck)
@@ -315,19 +332,20 @@ namespace RemoteController.ViewModels
                 HideBusy();
                 if (!ListOfScannedIpAddresses.Any())
                 {
-                    _dialog = new DialogService();
-                    await
-                        _dialog.ShowAsync("Nie mogę znaleść dekodera w tej sieci. Czy Twój dekoder jest w tej samej sieci?",
-                            "Wrong Network", new UICommand("OK"));
+                    await ShowDialogAsync("WrongNetwork");
+                    //await
+                    //    _dialog.ShowAsync("Nie mogę znaleść dekodera w tej sieci. Czy Twój dekoder jest w tej samej sieci?",
+                    //        "Wrong Network", new UICommand("OK"));
                     IsIpListVisible = false;
                 }
             }
             else
             {
                 _dialog = new DialogService();
-                await
-                    _dialog.ShowAsync("Nie jesteś połaczony z żadną siecią.",
-                        "Brak połączenia z siecią.", new UICommand("OK"));
+                await ShowDialogAsync("NoNetwork");
+                //await
+                //    _dialog.ShowAsync("Nie jesteś połaczony z żadną siecią.",
+                //        "Brak połączenia z siecią.", new UICommand("OK"));
                 IsIpListVisible = false;
             }
 
@@ -358,8 +376,10 @@ namespace RemoteController.ViewModels
                         }
                     }
                 }
-                //TODO: maybe change how to chose if klas C network 192... then chose that one (in case more NICs which are active)
-                return ipAddresses.LastOrDefault();
+                //TODO: maybe change how to chose if klas C network 192... then chose that one (in case more NICs which are active
+                //TODO: or maybe don't return LastOrDefault but return list and iterate one after another
+                //[TW]11/21/2015 - changed to return IP only that starts with 192.
+                return ipAddresses.FindLast(ip => ip.StartsWith("192."));
             }
 
             return "Not Connected";
@@ -367,8 +387,6 @@ namespace RemoteController.ViewModels
 
         public List<IPAddress> GetListOfLocalIpAddresses(string iPAddress)
         {
-            //TODO: dodać mozliwosc skoanowania zakresów dla innych podsieci
-            //iPAddress = "192.168.2.10";
 
             List<IPAddress> LocalNetworkIpList = new List<IPAddress>();
 
@@ -445,6 +463,8 @@ namespace RemoteController.ViewModels
 
         public string Publisher => Windows.ApplicationModel.Package.Current.PublisherDisplayName;
 
+        public string Description => Windows.ApplicationModel.Package.Current.Description;
+
         public string Version
         {
             get
@@ -455,7 +475,8 @@ namespace RemoteController.ViewModels
             }
         }
 
-        public Uri RateMe => new Uri("http://bing.com");
+        //TODO: Add store address in future.
+        public Uri RateMe => new Uri("http://programuje.net/");
     }
 }
 

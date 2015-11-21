@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutPivot.Header" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="BadIPContent" xml:space="preserve">
+    <value>Can't connect to given IP address, please chose different one.</value>
+  </data>
+  <data name="BadIPHeader" xml:space="preserve">
+    <value>Bad IP address</value>
+  </data>
+  <data name="ButtonCheck.Content" xml:space="preserve">
+    <value>Check this IP address</value>
+  </data>
+  <data name="ButtonScan.Content" xml:space="preserve">
+    <value>Scan local network</value>
+  </data>
+  <data name="FoundIPListView.Header" xml:space="preserve">
+    <value>Found address:</value>
+  </data>
+  <data name="HamburgerMenuTexblockPilot.Text" xml:space="preserve">
+    <value>Remote</value>
+  </data>
+  <data name="HamburgerMenuTexblockSettings.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="IpAddressTextBox.Header" xml:space="preserve">
+    <value>Saved IP address</value>
+  </data>
+  <data name="KeyboardPageHeader.Content" xml:space="preserve">
+    <value>Remote</value>
+  </data>
+  <data name="MainPageHeader.Content" xml:space="preserve">
+    <value>Remote</value>
+  </data>
+  <data name="NoConnectionContent" xml:space="preserve">
+    <value>Connection to Netia box cannot be established. Please check your IP settings.</value>
+  </data>
+  <data name="NoConnectionHeader" xml:space="preserve">
+    <value>Network problem</value>
+  </data>
+  <data name="NoIpSettingContent" xml:space="preserve">
+    <value>IP address is not configured in settings.</value>
+  </data>
+  <data name="NoIpSettingHeader" xml:space="preserve">
+    <value>Go to settings.</value>
+  </data>
+  <data name="NoNetworkContent" xml:space="preserve">
+    <value>You don't have connection to any local network.</value>
+  </data>
+  <data name="NoNetworkHeader" xml:space="preserve">
+    <value>No connection to netwok.</value>
+  </data>
+  <data name="OkIPContent" xml:space="preserve">
+    <value>This IP address is good, you can use it.</value>
+  </data>
+  <data name="OkIPHeader" xml:space="preserve">
+    <value>Good IP address</value>
+  </data>
+  <data name="ScanningTextBlock.Text" xml:space="preserve">
+    <value>Scanning network...</value>
+  </data>
+  <data name="SettingsPageHeader.Content" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsPivot.Header" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ThemeTogleSwitch.Header" xml:space="preserve">
+    <value>Change theme</value>
+  </data>
+  <data name="ThemeTogleSwitch.OffContent" xml:space="preserve">
+    <value>Dark theme</value>
+  </data>
+  <data name="ThemeTogleSwitch.OnContent" xml:space="preserve">
+    <value>Light theme</value>
+  </data>
+  <data name="WaitMessage" xml:space="preserve">
+    <value>Please Wait...</value>
+  </data>
+  <data name="WrongFormatIPContent" xml:space="preserve">
+    <value>Wrong format of IP address, please correct it.</value>
+  </data>
+  <data name="WrongFormatIPHeader" xml:space="preserve">
+    <value>Wrong IP address format.</value>
+  </data>
+  <data name="WrongNetworkContent" xml:space="preserve">
+    <value>Can't find Netia box in this network. Is your decoder in same network?</value>
+  </data>
+  <data name="WrongNetworkHeader" xml:space="preserve">
+    <value>Wrong Network</value>
+  </data>
+</root>

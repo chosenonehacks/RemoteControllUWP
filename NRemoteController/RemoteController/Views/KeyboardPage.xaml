@@ -60,7 +60,7 @@
         </Grid.RowDefinitions>
 
         <!-- header -->
-        <controls:PageHeader BackButtonVisibility="Collapsed" Content="Remote Control" Frame="{x:Bind Frame, Mode=OneWay}">
+        <controls:PageHeader BackButtonVisibility="Collapsed" Content="~PlaceHolderRemote Control" Frame="{x:Bind Frame, Mode=OneWay}" x:Uid="KeyboardPageHeader">
             <Interactivity:Interaction.Behaviors>
                 <Behaviors:EllipsisBehavior Visibility="Collapsed" />
             </Interactivity:Interaction.Behaviors>
