@@ -84,15 +84,21 @@
             </PivotItem>
             <PivotItem x:Uid="AboutPivot" Header="~PlaceHolderO aplikacji">
                 <Grid DataContext="{Binding AboutPartViewModel}">
-                    <Border HorizontalAlignment="Right" VerticalAlignment="Top"
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                    <Border HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40"
                             BorderBrush="DimGray" BorderThickness="1"
                             IsHitTestVisible="False">
                         <Border.Background>
                             <SolidColorBrush Color="{ThemeResource SystemAccentColor}" />
                         </Border.Background>
-                        <Image Margin="12" Source="{Binding Logo}" Stretch="None" />
+                        <Image Margin="0" Source="{Binding Logo}" Stretch="UniformToFill" MaxHeight="100" MaxWidth="100"/>
                     </Border>
-                    <StackPanel>
+                    
+                    <StackPanel >
                         <TextBlock Margin="0,0,0,12" FontSize="24" Text="{Binding DisplayName}" />
                         <TextBlock Text="{Binding Publisher}" />
                         <TextBlock>
@@ -100,6 +106,14 @@
                             <Run Text="{Binding Version}" />
                         </TextBlock>
                     </StackPanel>
+                        <StackPanel Grid.Row="1" Orientation="Vertical">
+                        <TextBlock Margin="0,0,0,12" x:Uid="AboutDescription" Text="~PlaceHolderThis is unofficial Netia TV box remote controller application for Windows 10 devices." TextWrapping="Wrap"/>
+                            
+                            <TextBlock >
+                                <Hyperlink NavigateUri="{Binding RateMe}">Rate me</Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </PivotItem>
         </Pivot>
