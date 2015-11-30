@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutDescription.Text" xml:space="preserve">
-    <value>To jest nie oficjalna aplikacja pilota telewizji Netia dla urządzeń z systemem Windows 10</value>
+    <value>To jest nieoficjalna aplikacja pilota telewizji Netia dla urządzeń z systemem Windows 10. Z pomocą tej aplikacji możesz sterować funkcjami dekodera Netia Player za pomocą smartfona, tabletu lub komputera. Autor aplikacji nie jest w żaden sposób powiązany z firmą Netia.</value>
   </data>
   <data name="AboutPivot.Header" xml:space="preserve">
     <value>O aplikacji</value>
