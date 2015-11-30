@@ -23,10 +23,10 @@ namespace RemoteController.ViewModels
             }
         }
 
-        public override async void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
-        {
-            //await GetChannelsListAsync();
-        }
+        //public override async void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        //{
+        //    //await GetChannelsListAsync();
+        //}
 
         private List<TvChannels> _listOfTvChannels;
         public List<TvChannels> ListOfTvChannels
