@@ -135,6 +135,9 @@
   <data name="ButtonScan.Content" xml:space="preserve">
     <value>Scan local network</value>
   </data>
+  <data name="ContactAuthor.Text" xml:space="preserve">
+    <value>Contact Author</value>
+  </data>
   <data name="FoundIPListView.Header" xml:space="preserve">
     <value>Found address:</value>
   </data>
@@ -176,6 +179,9 @@
   </data>
   <data name="OkIPHeader" xml:space="preserve">
     <value>Good IP address</value>
+  </data>
+  <data name="RateMe.Text" xml:space="preserve">
+    <value>Rate me</value>
   </data>
   <data name="ScanningTextBlock.Text" xml:space="preserve">
     <value>Scanning network...</value>

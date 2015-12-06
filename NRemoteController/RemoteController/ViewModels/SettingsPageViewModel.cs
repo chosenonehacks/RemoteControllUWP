@@ -476,7 +476,7 @@ namespace RemoteController.ViewModels
         }
 
         //TODO: Add store address in future.
-        public Uri RateMe => new Uri("http://programuje.net/");
+        public Uri RateMe => new Uri("https://www.microsoft.com/store/apps/9nblggh6gxzx");
     }
 }
 
