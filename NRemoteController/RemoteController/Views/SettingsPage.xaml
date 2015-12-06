@@ -109,9 +109,22 @@
                         <StackPanel Grid.Row="1" Orientation="Vertical">
                         <TextBlock Margin="0,0,0,12" x:Uid="AboutDescription" Text="~PlaceHolderThis is unofficial Netia TV box remote controller application for Windows 10 devices." TextWrapping="Wrap"/>
                             
-                            <TextBlock >
-                                <Hyperlink NavigateUri="{Binding RateMe}">Rate me</Hyperlink>
-                            </TextBlock>
+                            
+                                <HyperlinkButton   NavigateUri="{Binding RateMe}" >
+                                    <TextBlock>
+                                      <Underline>
+                                        <Run x:Uid="RateMe" Text="~RateMe"/>
+                                      </Underline>
+                                   </TextBlock>
+                                </HyperlinkButton>
+
+                                <HyperlinkButton   NavigateUri="http://programuje.net/kontakt/" >
+                                    <TextBlock>
+                                          <Underline>
+                                            <Run x:Uid="ContactAuthor" Text="~ContactAuthor"/>
+                                          </Underline>
+                                    </TextBlock>
+                                </HyperlinkButton>
                         </StackPanel>
                     </Grid>
                 </Grid>

@@ -1,8 +1,11 @@
 using System;
+using System.Linq;
 using Windows.UI.Xaml;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using RemoteController.Services.SettingsServices;
 using Windows.ApplicationModel.Activation;
+using Template10.Common;
 
 namespace RemoteController
 {
@@ -41,6 +44,24 @@ namespace RemoteController
         {
             await Task.Delay(50);
             NavigationService.Navigate(typeof(Views.MainPage));
+        }
+
+        public static void ClearNavigationServices(Window window)
+        {
+            var wrapperToRemove = WindowWrapper.ActiveWrappers.FirstOrDefault(wrapper => object.ReferenceEquals(wrapper.Window, window));
+            if (wrapperToRemove != null)
+            {
+                wrapperToRemove.NavigationServices.Clear();
+            }
+        }
+
+        public override Task OnSuspendingAsync(object s, SuspendingEventArgs e)
+        {
+            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily.Equals("Windows.Mobile"))
+            {
+                ClearNavigationServices(Window.Current);
+            }
+            return base.OnSuspendingAsync(s, e);
         }
     }
 }
