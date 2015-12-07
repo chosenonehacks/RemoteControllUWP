@@ -23,10 +23,10 @@ namespace RemoteController.ViewModels
             }
         }
 
-        //public override async void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
-        //{
-        //    //await GetChannelsListAsync();
-        //}
+        public override async void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        {
+            await GetChannelsListAsync();
+        }
 
         private List<TvChannels> _listOfTvChannels;
         public List<TvChannels> ListOfTvChannels
@@ -36,11 +36,11 @@ namespace RemoteController.ViewModels
         }
 
         //TODO:maybe in future add rest of functions that are on android and IOS version
-        //public async Task GetChannelsListAsync()
-        //{
-        //    ListOfTvChannels = new List<TvChannels>();
-        //    ListOfTvChannels = await _remoteController.GetChannelListAsync();
-        //}
+        public async Task GetChannelsListAsync()
+        {
+            ListOfTvChannels = new List<TvChannels>();
+            ListOfTvChannels = await _remoteController.GetChannelListAsync();
+        }
 
         public string IpAddress => _manager.Load<string>("IpSetting", String.Empty);
     }
