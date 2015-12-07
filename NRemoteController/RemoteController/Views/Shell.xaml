@@ -40,7 +40,7 @@
                         <SymbolIcon Width="48" Height="48" Symbol="List" />
                         <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="Program" />
                     </StackPanel>
-                </Controls:HamburgerButtonInfo>
+                </Controls:HamburgerButtonInfo>-->
 
                 <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:ListPage">
                     <StackPanel Orientation="Horizontal">
@@ -49,7 +49,7 @@
                     </StackPanel>
                 </Controls:HamburgerButtonInfo>
 
-                <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
+                <!--<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
                     <StackPanel Orientation="Horizontal">
                         <SymbolIcon Width="48" Height="48" Symbol="SwitchApps" />
                         <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="Apps" />

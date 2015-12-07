@@ -31,6 +31,9 @@
         <Grid Grid.Row="1">
             <!-- Maybe in future add list of programs-->
             <!--<Button Content="test" Click="{x:Bind ViewModel.GetChannelsListAsync}"/>-->
+            <ListView ItemsSource="{Binding ListOfTvChannels}">
+                
+            </ListView>
         </Grid>
         
     </Grid>
