@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutDescription.Text" xml:space="preserve">
-    <value>This is unofficial Netia TV box remote controller application for Windows 10 devices.</value>
+    <value>This is unofficial Netia TV box remote controller application for Windows 10 devices. With help of this app you can control Netia TV decoder using your smartphone, tablet or computer. Author of this app is not affiliated with the company Netia in any way.</value>
   </data>
   <data name="AboutPivot.Header" xml:space="preserve">
     <value>About</value>
@@ -134,6 +134,9 @@
   </data>
   <data name="ButtonScan.Content" xml:space="preserve">
     <value>Scan local network</value>
+  </data>
+  <data name="ContactAuthor.Text" xml:space="preserve">
+    <value>Contact Author</value>
   </data>
   <data name="FoundIPListView.Header" xml:space="preserve">
     <value>Found address:</value>
@@ -176,6 +179,9 @@
   </data>
   <data name="OkIPHeader" xml:space="preserve">
     <value>Good IP address</value>
+  </data>
+  <data name="RateMe.Text" xml:space="preserve">
+    <value>Rate me</value>
   </data>
   <data name="ScanningTextBlock.Text" xml:space="preserve">
     <value>Scanning network...</value>

@@ -1,0 +1,7 @@
+MainPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\Upload\RemoteController_1.1.8.0_ARM.appx
+SymbolPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\AppPackages\RemoteController_1.1.8.0\RemoteController_1.1.8.0_ARM.appxsym
+ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\_language-pl.appx
+ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\_scale-100.appx
+ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\_scale-125.appx
+ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\_scale-150.appx
+ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\_scale-400.appx

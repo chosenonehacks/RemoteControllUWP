@@ -55,62 +55,70 @@ namespace RemoteController.Services.RemoteController
             return succeeded = false;
         }
 
-        //public async Task<List<TvChannels>> GetChannelListAsync()
-        //{
-        //    List<TvChannels> tvChannelList = new List<TvChannels>();
-        //    string address = String.Empty;
+        public async Task<List<TvChannels>> GetChannelListAsync()
+        {
+            List<TvChannels> tvChannelList = new List<TvChannels>();
+            string address = String.Empty;
 
-        //    if (!string.IsNullOrWhiteSpace(_ipAddress))
-        //    {
-        //        address = "http://" + _ipAddress + "/Live/Channels/getList";
-                
-        //        var uri = new Uri(address, UriKind.Absolute);
+            if (!string.IsNullOrWhiteSpace(_ipAddress))
+            {
+                address = "http://" + _ipAddress + "/Live/Channels/getList";
 
-        //        //using (System.Net.Http.HttpClient httpClient = new System.Net.Http.HttpClient())
-        //        //{
-        //        //    try
-        //        //    {
-
-        //        //        var headers = httpClient.DefaultRequestHeaders;
-
-        //        //        headers.UserAgent.ParseAdd(
-        //        //            "Netia%C2%A0Player%C2%A0Pilot/2014.10.271657 CFNetwork/758.1.6 Darwin/15.0.0");
+                var uri = new Uri(address, UriKind.Absolute);
 
 
-        //        //        var content = await httpClient.GetStreamAsync(uri);
+#region different way to send httpClient
+                //using (System.Net.Http.HttpClient httpClient = new System.Net.Http.HttpClient())
+                //{
+                //    try
+                //    {
 
-        //        //        //var content = await httpClient.GetStringAsync(uri);
+                //        var headers = httpClient.DefaultRequestHeaders;
 
-        //        //        var intt = content.Length;
+                //        headers.UserAgent.ParseAdd(
+                //            "Netia%C2%A0Player%C2%A0Pilot/2014.10.271657 CFNetwork/758.1.6 Darwin/15.0.0");
 
-        //        //        tvChannelList = JsonConvert.DeserializeObject<List<TvChannels>>(content.ToString());
 
-        //        //        return tvChannelList;
+                //        var content = await httpClient.GetStreamAsync(uri);
 
-        //        //    }
-        //        //    catch (Exception ex)
-        //        //    {
+                //        //var content = await httpClient.GetStringAsync(uri);
 
-        //        //    }
-        //        //}
+                //        var intt = content.Length;
 
-        //        using (System.Net.Http.HttpClient client = new System.Net.Http.HttpClient())
-        //        {
-        //            client.DefaultRequestHeaders.Accept.Clear();
-        //            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        //            client.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Encoding", "gzip, deflate");
-        //            client.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Charset", "UTF-8");
+                //        tvChannelList = JsonConvert.DeserializeObject<List<TvChannels>>(content.ToString());
 
-        //            System.Net.Http.HttpResponseMessage response = await client.GetAsync(uri);
-        //            response.EnsureSuccessStatusCode();
-        //            var data = await response.Content.ReadAsStringAsync();
-        //            tvChannelList = JsonConvert.DeserializeObject<List<TvChannels>>(data);
+                //        return tvChannelList;
 
-        //            return tvChannelList;
-        //        }
+                //    }
+                //    catch (Exception ex)
+                //    {
 
-        //    }
-        //    return tvChannelList;
-        //}
+                //    }
+                //}
+#endregion
+
+                using (System.Net.Http.HttpClient client = new System.Net.Http.HttpClient())
+                {
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Encoding", "gzip, deflate");
+                    client.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Charset", "UTF-8");
+
+                    System.Net.Http.HttpResponseMessage response = await client.GetAsync(uri);
+                    response.EnsureSuccessStatusCode();
+                    var data = await response.Content.ReadAsStringAsync();
+                    tvChannelList = JsonConvert.DeserializeObject<List<TvChannels>>(data);
+
+                    return tvChannelList;
+                }
+
+            }
+            return tvChannelList;
+        }
+
+        public async Task<bool> SendRemoteCommandByZapAsync(string pressedZap)
+        {  
+            return true;
+        } 
     }
 }

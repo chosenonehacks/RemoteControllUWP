@@ -1,0 +1,2 @@
+MainPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\x86\Release\RemoteController_1.1.8.0_x86.appx
+SymbolPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\AppPackages\RemoteController_1.1.8.0\RemoteController_1.1.8.0_x86.appxsym
