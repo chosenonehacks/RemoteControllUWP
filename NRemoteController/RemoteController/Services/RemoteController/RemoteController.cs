@@ -119,6 +119,6 @@ namespace RemoteController.Services.RemoteController
         public async Task<bool> SendRemoteCommandByZapAsync(string pressedZap)
         {
             return true;
-        }
+        } 
     }
 }

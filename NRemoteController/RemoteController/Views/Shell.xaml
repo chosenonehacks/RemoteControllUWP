@@ -47,7 +47,7 @@
                         <SymbolIcon Width="48" Height="48" Symbol="Favorite" />
                         <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="List" />
                     </StackPanel>
-                </Controls:HamburgerButtonInfo>
+                </Controls:HamburgerButtonInfo> 
 
                 <!--<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
                     <StackPanel Orientation="Horizontal">

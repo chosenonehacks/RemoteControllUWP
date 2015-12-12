@@ -67,7 +67,7 @@ namespace RemoteController.ViewModels
 
         private async Task SendRemoteCommandAsync(string pressedZap)
         {
-            var result = await _remoteController.SendRemoteCommandByZapAsync(pressedZap);
+            var result = await _remoteController.SendRemoteCommandByZapAsync(pressedZap); 
 
             if (!result)
             {
