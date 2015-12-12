@@ -121,7 +121,7 @@
                                 <HyperlinkButton   NavigateUri="http://programuje.net/kontakt/" >
                                     <TextBlock>
                                           <Underline>
-                                            <Run x:Uid="ContactAuthor" Text="~ContactAuthor"/> 
+                                            <Run x:Uid="ContactAuthor" Text="~ContactAuthor"/>  
                                           </Underline>
                                     </TextBlock>
                                 </HyperlinkButton>

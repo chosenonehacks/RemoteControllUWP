@@ -84,7 +84,7 @@ namespace RemoteController.ViewModels
             var messageContent = _loader.GetString(string.Format("{0}Content", message));
 
             await _dialog.ShowAsync(messageContent, messageHeader, new UICommand("OK"));
-        } 
+        }  
 
         public string IpAddress => _manager.Load<string>("IpSetting", String.Empty);
     }

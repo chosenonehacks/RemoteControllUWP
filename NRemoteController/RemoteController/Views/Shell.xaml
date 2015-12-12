@@ -59,7 +59,7 @@
 
 
             </Controls:HamburgerMenu.PrimaryButtons>
-
+ 
             <Controls:HamburgerMenu.SecondaryButtons>
                 <Controls:HamburgerButtonInfo PageType="views:SettingsPage">
                     <StackPanel Orientation="Horizontal">
