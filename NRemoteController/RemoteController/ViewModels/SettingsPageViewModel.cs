@@ -476,7 +476,7 @@ namespace RemoteController.ViewModels
         }
         
         public Uri RateMe => new Uri("https://www.microsoft.com/en-us/store/apps/unofficial-netia-pilot/9nblggh6gxzx");
-         
+          
     }
 }
 

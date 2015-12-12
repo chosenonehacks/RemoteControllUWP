@@ -43,7 +43,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" >
                                 <Button  MinWidth="150" MaxWidth="150" MinHeight="80" Command="{Binding DataContext.SendPilotCommand, ElementName=ListPageGrid}" CommandParameter="{Binding Zap}">
-                                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center" ></TextBlock> 
+                                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center" ></TextBlock>  
                                 </Button>
                             </StackPanel>
                         </DataTemplate>
