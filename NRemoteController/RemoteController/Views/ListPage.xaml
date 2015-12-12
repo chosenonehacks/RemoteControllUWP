@@ -7,13 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:RemoteController.ViewModels"
     xmlns:controls="using:Template10.Controls"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Template10.Behaviors"
     mc:Ignorable="d">
 
     <Page.DataContext>
         <vm:ListPageViewModel />
     </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="ListPageGrid">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -23,17 +25,31 @@
         <!--  header  -->
 
         <controls:PageHeader Frame="{x:Bind Frame, Mode=OneWay}" Content="Program List" >
-            <!--<Interactivity:Interaction.Behaviors>
-                <Behaviors:EllipsisBehavior Visibility="Collapsed" />
-            </Interactivity:Interaction.Behaviors>-->
+            <interactivity:Interaction.Behaviors>
+                <behaviors:EllipsisBehavior Visibility="Collapsed" />
+            </interactivity:Interaction.Behaviors>
         </controls:PageHeader>
         
         <Grid Grid.Row="1">
-            <!-- Maybe in future add list of programs-->
-            <!--<Button Content="test" Click="{x:Bind ViewModel.GetChannelsListAsync}"/>-->
-            <ListView ItemsSource="{Binding ListOfTvChannels}">
-                
-            </ListView>
+                 
+            <Grid Margin="10">
+                <GridView ItemsSource="{Binding ListOfTvChannels}" >
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="10"/>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" >
+                                <Button  MinWidth="150" MaxWidth="150" MinHeight="80" Command="{Binding DataContext.SendPilotCommand, ElementName=ListPageGrid}" CommandParameter="{Binding Zap}">
+                                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center" ></TextBlock>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Grid>
         </Grid>
         
     </Grid>

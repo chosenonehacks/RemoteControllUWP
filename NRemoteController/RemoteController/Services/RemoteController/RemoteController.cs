@@ -66,6 +66,8 @@ namespace RemoteController.Services.RemoteController
 
                 var uri = new Uri(address, UriKind.Absolute);
 
+
+#region different way to send httpClient
                 //using (System.Net.Http.HttpClient httpClient = new System.Net.Http.HttpClient())
                 //{
                 //    try
@@ -93,6 +95,7 @@ namespace RemoteController.Services.RemoteController
 
                 //    }
                 //}
+#endregion
 
                 using (System.Net.Http.HttpClient client = new System.Net.Http.HttpClient())
                 {
@@ -111,6 +114,11 @@ namespace RemoteController.Services.RemoteController
 
             }
             return tvChannelList;
+        }
+
+        public async Task<bool> SendRemoteCommandByZapAsync(string pressedZap)
+        {
+            return true;
         }
     }
 }

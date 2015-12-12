@@ -474,9 +474,9 @@ namespace RemoteController.ViewModels
                        ver.Revision.ToString();
             }
         }
-
-        //TODO: Add store address in future.
-        public Uri RateMe => new Uri("https://www.microsoft.com/store/apps/9nblggh6gxzx");
+        
+        public Uri RateMe => new Uri("https://www.microsoft.com/en-us/store/apps/unofficial-netia-pilot/9nblggh6gxzx");
+        
     }
 }
 
