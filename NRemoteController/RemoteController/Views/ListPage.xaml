@@ -16,6 +16,7 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="ListPageGrid">
+        
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -33,19 +34,22 @@
         <Grid Grid.Row="1">
                  
             <Grid Margin="10">
-                <GridView ItemsSource="{Binding ListOfTvChannels}" >
+                <GridView ItemsSource="{Binding ListOfTvChannels}" HorizontalAlignment="Center" >
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="10"/>
+                            <ItemsWrapGrid x:Uid="WarpGrid" Orientation="Horizontal" MaximumRowsOrColumns="12" />
                         </ItemsPanelTemplate>
                     </GridView.ItemsPanel>
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" >
-                                <Button  MinWidth="150" MaxWidth="150" MinHeight="80" Command="{Binding DataContext.SendPilotCommand, ElementName=ListPageGrid}" CommandParameter="{Binding Zap}">
+                            
+                                <!--<Button  MinWidth="150" MaxWidth="150" MinHeight="80" Command="{Binding DataContext.SendPilotCommand, ElementName=ListPageGrid}" CommandParameter="{Binding Zap}">
                                         <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center" ></TextBlock>   
+                                </Button>-->
+                            <Button x:Uid="ChanellButton" MinHeight="80" MinWidth="120" Command="{Binding DataContext.SendPilotCommand, ElementName=ListPageGrid}" CommandParameter="{Binding Zap}">
+                                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center" ></TextBlock>
                                 </Button>
-                            </StackPanel>
+                           
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>

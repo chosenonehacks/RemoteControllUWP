@@ -103,13 +103,21 @@ namespace RemoteController.Services.RemoteController
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     client.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Encoding", "gzip, deflate");
                     client.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Charset", "UTF-8");
+                    try
+                    {
+                        System.Net.Http.HttpResponseMessage response = await client.GetAsync(uri);
+                        response.EnsureSuccessStatusCode();
+                        var data = await response.Content.ReadAsStringAsync();
+                        tvChannelList = JsonConvert.DeserializeObject<List<TvChannels>>(data);
 
-                    System.Net.Http.HttpResponseMessage response = await client.GetAsync(uri);
-                    response.EnsureSuccessStatusCode();
-                    var data = await response.Content.ReadAsStringAsync();
-                    tvChannelList = JsonConvert.DeserializeObject<List<TvChannels>>(data);
+                        return tvChannelList;
+                    }
+                    catch (Exception)
+                    {
 
-                    return tvChannelList;
+                        return tvChannelList;
+                    }
+                    
                 }
 
             }
@@ -117,8 +125,24 @@ namespace RemoteController.Services.RemoteController
         }
 
         public async Task<bool> SendRemoteCommandByZapAsync(string pressedZap)
-        {  
-            return true;
-        } 
+        {
+            if (!String.IsNullOrEmpty(pressedZap))
+            {
+                var keysArray = pressedZap.ToCharArray();
+                bool sendRemoteResult;
+                List<bool> sendRemoteResultsList = new List<bool>();
+
+                foreach (char k in keysArray)
+                {
+                    sendRemoteResult = await SendRemoteCommandAsync(k.ToString());
+                    sendRemoteResultsList.Add(sendRemoteResult);
+                }
+                return sendRemoteResultsList.All(x => x != false); //if any from the list is not false return true
+            }
+            
+            return false;
+        }
     }
 }
+
+

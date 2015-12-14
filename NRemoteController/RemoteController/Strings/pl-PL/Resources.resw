@@ -141,6 +141,9 @@
   <data name="FoundIPListView.Header" xml:space="preserve">
     <value>Znaleziony adres:</value>
   </data>
+  <data name="HamburgerMenuTexblockList.Text" xml:space="preserve">
+    <value>Kanały TV</value>
+  </data>
   <data name="HamburgerMenuTexblockPilot.Text" xml:space="preserve">
     <value>Pilot</value>
   </data>
@@ -157,7 +160,7 @@
     <value>Pilot</value>
   </data>
   <data name="NoConnectionContent" xml:space="preserve">
-    <value>Połączenie do dekodera Netia nie może być ustanowione. Proszę sprawdzić ustawienia adresu IP.</value>
+    <value>Połączenie do dekodera Netia nie może być ustanowione. Proszę sprawdzić ustawienia adresu IP lub ustawienia sieci.</value>
   </data>
   <data name="NoConnectionHeader" xml:space="preserve">
     <value>Problem z siecią</value>

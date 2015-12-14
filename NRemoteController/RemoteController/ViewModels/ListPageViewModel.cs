@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using RemoteController.Models;
 using RemoteController.Services.DialogService;
@@ -45,8 +46,45 @@ namespace RemoteController.ViewModels
         //TODO:maybe in future add rest of functions that are on android and IOS version
         public async Task GetChannelsListAsync()
         {
+            ShowBusy();
+
             ListOfTvChannels = new List<TvChannels>();
             ListOfTvChannels = await _remoteController.GetChannelListAsync();
+
+            if (!ListOfTvChannels.Any())
+            {
+                await ShowDialogAsync("NoConnection");
+                HideBusy();
+                GotoSettingsPage();
+            }
+            else
+            {
+                HideBusy();
+            }
+            
+
+        }
+
+        public void GotoSettingsPage()
+        {
+            this.NavigationService.Navigate(typeof(Views.SettingsPage));
+        }
+
+        private string _BusyText;
+        public string BusyText
+        {
+            get { return _BusyText; }
+            set { Set(ref _BusyText, value); }
+        }
+
+        public void ShowBusy()
+        {
+            Views.Shell.SetBusyVisibility(Visibility.Visible, _BusyText);
+        }
+
+        public void HideBusy()
+        {
+            Views.Shell.SetBusyVisibility(Visibility.Collapsed);
         }
 
         private DelegateCommand<string> _setPilotCommand;
@@ -72,7 +110,6 @@ namespace RemoteController.ViewModels
             if (!result)
             {
                 await ShowDialogAsync("NoConnection");
-                //await _dialog.ShowAsync("Połączenie do dekodera Netia nie może być ustanowione. Proszę sprawdzić ustawienia adresu IP.", "Problem z siecią", new UICommand("OK"));
             }
         }
 

@@ -141,6 +141,9 @@
   <data name="FoundIPListView.Header" xml:space="preserve">
     <value>Found address:</value>
   </data>
+  <data name="HamburgerMenuTexblockList.Text" xml:space="preserve">
+    <value>Channel list</value>
+  </data>
   <data name="HamburgerMenuTexblockPilot.Text" xml:space="preserve">
     <value>Remote</value>
   </data>
@@ -157,7 +160,7 @@
     <value>Remote</value>
   </data>
   <data name="NoConnectionContent" xml:space="preserve">
-    <value>Connection to Netia box cannot be established. Please check your IP settings.</value>
+    <value>Connection to Netia box cannot be established. Please check your IP settings or network settings.</value>
   </data>
   <data name="NoConnectionHeader" xml:space="preserve">
     <value>Network problem</value>
