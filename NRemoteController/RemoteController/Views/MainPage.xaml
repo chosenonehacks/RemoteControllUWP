@@ -73,7 +73,7 @@
                     </PivotItem.Header>
                     <StackPanel x:Name="PanelTVUser" Orientation="Vertical" >
                         <userControls:PilotTopUserControl Margin="0,0,0,0"/>
-                        <userControls:PilotTVUserControl Margin="0,0,0,0"/>
+                        <userControls:PilotNaviUserControl/>
                         <userControls:PilotBottomUserControl Margin="0,0,0,0"/>
                     </StackPanel>
                 </PivotItem>
@@ -83,7 +83,8 @@
                     </PivotItem.Header>
                     <StackPanel  x:Name="PanelNavi"  Orientation="Vertical">
                         <userControls:PilotTopUserControl/>
-                        <userControls:PilotNaviUserControl/>
+                        <userControls:PilotTVUserControl Margin="0,0,0,0"/>
+                        
                         <userControls:PilotBottomUserControl/>
                     </StackPanel>
                 </PivotItem>

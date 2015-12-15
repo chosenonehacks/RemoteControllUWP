@@ -123,6 +123,9 @@
   <data name="AboutPivot.Header" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="AppListPageHeader.Content" xml:space="preserve">
+    <value>App List</value>
+  </data>
   <data name="BadIPContent" xml:space="preserve">
     <value>Can't connect to given IP address, please chose different one.</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="FoundIPListView.Header" xml:space="preserve">
     <value>Found address:</value>
+  </data>
+  <data name="HamburgerMenuAppList.Text" xml:space="preserve">
+    <value>Apps</value>
   </data>
   <data name="HamburgerMenuTexblockList.Text" xml:space="preserve">
     <value>Channel list</value>
@@ -182,6 +188,9 @@
   </data>
   <data name="OkIPHeader" xml:space="preserve">
     <value>Good IP address</value>
+  </data>
+  <data name="ProgramListPageHeader.Content" xml:space="preserve">
+    <value>TV Channel list</value>
   </data>
   <data name="RateMe.Text" xml:space="preserve">
     <value>Rate me</value>

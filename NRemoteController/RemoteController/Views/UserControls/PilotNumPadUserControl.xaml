@@ -16,30 +16,38 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Row="0" Grid.Column="0" Name="ButtonOne" Content="1" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="1"  />
-                <Button Grid.Row="0" Grid.Column="1" Name="ButtonTwo" Content="2" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="2"/>
-                <Button Grid.Row="0" Grid.Column="2" Name="ButtonThree" Content="3" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="3"/>
-
-                <Button Grid.Row="1" Grid.Column="0" Name="ButtonFour" Content="4" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="4"/>
-                <Button Grid.Row="1" Grid.Column="1" Name="ButtonFive" Content="5" MinWidth="40"  HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="5"/>
-                <Button Grid.Row="1" Grid.Column="2" Name="ButtonSix" Content="6" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="6"/>
-
-                <Button Grid.Row="2" Grid.Column="0" Name="ButtonDel" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="delete">
-                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE925;"  />    
+                <Button Grid.Row="0" Grid.Column="0" Name="ButtonOne"  MaxHeight="22" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="1"  >
+                    <TextBlock FontSize="8">1</TextBlock>
                 </Button>
-                <Button Grid.Row="2" Grid.Column="1" Name="ButtonZero" Content="0" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="0"/>
-                <Button Grid.Row="2" Grid.Column="2" Name="ButtonKeyb"  HorizontalAlignment="Stretch" Command="{Binding GotoKeyboardPageCommand}"> <!--go to new page-->
+                <Button Grid.Row="0" Grid.Column="1" Name="ButtonTwo" Content="2" MaxHeight="22" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="2" FontSize="8"/>
+                <Button Grid.Row="0" Grid.Column="2" Name="ButtonThree" Content="3" MaxHeight="22" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="3" FontSize="8"/>
+
+                <Button Grid.Row="1" Grid.Column="0" Name="ButtonFour" Content="4" MaxHeight="22" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="4" FontSize="8"/>
+                <Button Grid.Row="1" Grid.Column="1" Name="ButtonFive" Content="5" MaxHeight="22" MinWidth="40"  HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="5" FontSize="8"/>
+                <Button Grid.Row="1" Grid.Column="2" Name="ButtonSix" Content="6" MaxHeight="22" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="6" FontSize="8"/>
+
+                <Button Grid.Row="2" Grid.Column="0" Name="ButtonSeven" Content="7" MaxHeight="22" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="7" FontSize="8"/>
+                <Button Grid.Row="2" Grid.Column="1" Name="ButtonEight" Content="8" MaxHeight="22" MinWidth="40"  HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="8" FontSize="8"/>
+                <Button Grid.Row="2" Grid.Column="2" Name="ButtonNine" Content="9" MaxHeight="22" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="9" FontSize="8" />
+
+                <Button Grid.Row="3" Grid.Column="0" Name="ButtonDel" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="delete">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE925;"  />
+                </Button>
+                <Button Grid.Row="3" Grid.Column="1" Name="ButtonZero" Content="0" MinWidth="40" HorizontalAlignment="Stretch" Command="{Binding SendPilotCommand}" CommandParameter="0"/>
+                <Button Grid.Row="3" Grid.Column="2" Name="ButtonKeyb"  HorizontalAlignment="Stretch" Command="{Binding GotoKeyboardPageCommand}">
+                    <!--go to new page-->
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"  Glyph="&#xE144;"  />
                 </Button>
             </Grid>
         </Viewbox>
 
-        </Grid>
+    </Grid>
 </UserControl>

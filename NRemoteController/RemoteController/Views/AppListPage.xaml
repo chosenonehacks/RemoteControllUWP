@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="RemoteController.Views.ListPage"
+    x:Class="RemoteController.Views.AppListPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RemoteController.Views"
@@ -9,14 +9,14 @@
     xmlns:controls="using:Template10.Controls"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:Template10.Behaviors"
+    xmlns:userControls="using:RemoteController.Views.UserControls"
     mc:Ignorable="d">
 
     <Page.DataContext>
-        <vm:ListPageViewModel />
+        <vm:AppListViewModel />
     </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="ListPageGrid">
-        
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="AppListPageGrid">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -25,32 +25,33 @@
 
         <!--  header  -->
 
-        <controls:PageHeader Frame="{x:Bind Frame, Mode=OneWay}" x:Uid="ProgramListPageHeader" Content="~PlaceHolderProgramList" >
+        <controls:PageHeader Frame="{x:Bind Frame, Mode=OneWay}" x:Uid="AppListPageHeader" Content="~PlaceHolderAppList" >
             <interactivity:Interaction.Behaviors>
                 <behaviors:EllipsisBehavior Visibility="Collapsed" />
             </interactivity:Interaction.Behaviors>
         </controls:PageHeader>
-        
-        <Grid Grid.Row="1">
-                 
+
+        <Grid  Grid.Row="1" >
+
             <Grid Margin="10">
-                <GridView ItemsSource="{Binding ListOfTvChannels}" HorizontalAlignment="Center" >
+                <GridView ItemsSource="{Binding ListOfApps}" HorizontalAlignment="Center" >
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <ItemsWrapGrid x:Uid="WarpGrid" Orientation="Horizontal" MaximumRowsOrColumns="12" />
+                            <ItemsWrapGrid x:Uid="WarpGrid" Orientation="Horizontal" MaximumRowsOrColumns="5" />
                         </ItemsPanelTemplate>
                     </GridView.ItemsPanel>
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <Button x:Uid="ChanellButton" MinHeight="80" MinWidth="120" Command="{Binding DataContext.SendPilotCommand, ElementName=ListPageGrid}" CommandParameter="{Binding Zap}">
-                                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center" ></TextBlock>
-                                </Button>
-                           
+
+                            <Button x:Name="AppButton" Command="{Binding DataContext.SendPilotCommand, ElementName=AppListPageGrid}" CommandParameter="{Binding Id}" Padding="0" Margin="0" >
+                            <userControls:AppList/>
+                            </Button>
+
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
             </Grid>
         </Grid>
-        
+
     </Grid>
 </Page>

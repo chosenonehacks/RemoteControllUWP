@@ -110,7 +110,7 @@
     </Compile>
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\InverseBooleanToVisibilityConverter.cs" />
-    <Compile Include="Models\TvChannels.cs" />
+    <Compile Include="Models\Models.cs" />
     <Compile Include="Mvvm\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService\DialogHelper.cs" />
@@ -125,7 +125,11 @@
     <Compile Include="Services\SettingsServices\SettingsService.Apply.cs" />
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
     <Compile Include="ViewModels\KeyboardPageViewModel.cs" />
+    <Compile Include="ViewModels\AppListViewModel.cs" />
     <Compile Include="ViewModels\ListPageViewModel.cs" />
+    <Compile Include="Views\AppListPage.xaml.cs">
+      <DependentUpon>AppListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ListPage.xaml.cs">
       <DependentUpon>ListPage.xaml</DependentUpon>
     </Compile>
@@ -146,6 +150,9 @@
     </Compile>
     <Compile Include="Views\Splash.xaml.cs">
       <DependentUpon>Splash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\AppList.xaml.cs">
+      <DependentUpon>AppList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\PilotBottomUserControl.xaml.cs">
       <DependentUpon>PilotBottomUserControl.xaml</DependentUpon>
@@ -230,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Views\AppListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -255,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Splash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\AppList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

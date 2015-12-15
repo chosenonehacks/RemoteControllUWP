@@ -49,12 +49,12 @@
                     </StackPanel>
                 </Controls:HamburgerButtonInfo> 
 
-                <!--<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
+                <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:AppListPage">
                     <StackPanel Orientation="Horizontal">
                         <SymbolIcon Width="48" Height="48" Symbol="SwitchApps" />
-                        <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="Apps" />
+                        <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="~PlaceHolderApps" x:Uid="HamburgerMenuAppList"/>
                     </StackPanel>
-                </Controls:HamburgerButtonInfo>-->
+                </Controls:HamburgerButtonInfo>
 
 
 
