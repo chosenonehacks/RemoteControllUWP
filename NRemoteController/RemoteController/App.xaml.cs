@@ -40,29 +40,44 @@ namespace RemoteController
         }
 
         // runs only when not restored from state
+        //public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
+        //{
+        //    await Task.Delay(50);
+        //    NavigationService.Navigate(typeof(Views.MainPage));
+        //}
+
+        //[TW] 1/16/2016 - Better fix for returning for suspending before release of 1.0.9 of template 10 
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
-            await Task.Delay(50);
+            // navigate to first page
+            var nav = WindowWrapper.ActiveWrappers.FirstOrDefault(wrapper => object.ReferenceEquals(wrapper.Window, Window.Current)).NavigationServices;
+            if (nav.Count > 1)
+            {
+                nav.Remove(nav[0]);
+            }
+
             NavigationService.Navigate(typeof(Views.MainPage));
+            await Task.CompletedTask;
         }
 
-        public static void ClearNavigationServices(Window window)
-        {
-            var wrapperToRemove = WindowWrapper.ActiveWrappers.FirstOrDefault(wrapper => object.ReferenceEquals(wrapper.Window, window));
-            if (wrapperToRemove != null)
-            {
-                wrapperToRemove.NavigationServices.Clear();
-            }
-        }
+        //First fix to suspending / resume bug 
+        //public static void ClearNavigationServices(Window window)
+        //{
+        //    var wrapperToRemove = WindowWrapper.ActiveWrappers.FirstOrDefault(wrapper => object.ReferenceEquals(wrapper.Window, window));
+        //    if (wrapperToRemove != null)
+        //    {
+        //        wrapperToRemove.NavigationServices.Clear();
+        //    }
+        //}
 
-        public override Task OnSuspendingAsync(object s, SuspendingEventArgs e)
-        {
-            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily.Equals("Windows.Mobile"))
-            {
-                ClearNavigationServices(Window.Current);
-            }
-            return base.OnSuspendingAsync(s, e);
-        }
+        //public override Task OnSuspendingAsync(object s, SuspendingEventArgs e)
+        //{
+        //    if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily.Equals("Windows.Mobile"))
+        //    {
+        //        ClearNavigationServices(Window.Current);
+        //    }
+        //    return base.OnSuspendingAsync(s, e);
+        //}
     }
 }
 

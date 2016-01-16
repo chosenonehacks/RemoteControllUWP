@@ -1,7 +1,7 @@
-MainPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.9.0_ARM.appx
-SymbolPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\AppPackages\RemoteController_1.1.9.0_Test\RemoteController_1.1.9.0_ARM.appxsym
-ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.9.0_language-pl.appx
-ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.9.0_scale-100.appx
-ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.9.0_scale-125.appx
-ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.9.0_scale-150.appx
-ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.9.0_scale-400.appx
+MainPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.10.0_ARM.appx
+SymbolPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\AppPackages\RemoteController_1.1.10.0_Test\RemoteController_1.1.10.0_ARM.appxsym
+ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.10.0_language-pl.appx
+ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.10.0_scale-100.appx
+ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.10.0_scale-125.appx
+ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.10.0_scale-150.appx
+ResourcePack=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\ARM\Release\RemoteController_1.1.10.0_scale-400.appx

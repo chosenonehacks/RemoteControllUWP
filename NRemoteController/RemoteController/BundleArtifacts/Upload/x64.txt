@@ -1,2 +1,2 @@
-MainPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\x64\Release\Upload\RemoteController_1.1.9.0_x64.appx
-SymbolPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\AppPackages\RemoteController_1.1.9.0\RemoteController_1.1.9.0_x64.appxsym
+MainPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\bin\x64\Release\Upload\RemoteController_1.1.10.0_x64.appx
+SymbolPackage=D:\Documents\GitHubVisualStudio\RemoteControllUWP\NRemoteController\RemoteController\AppPackages\RemoteController_1.1.10.0\RemoteController_1.1.10.0_x64.appxsym
