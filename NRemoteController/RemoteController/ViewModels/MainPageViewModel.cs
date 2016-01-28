@@ -91,6 +91,24 @@ namespace RemoteController.ViewModels
 
             await _dialog.ShowAsync(messageContent, messageHeader, new UICommand("OK"));
         }
+
+        private DelegateCommand _shareCommand;
+        public DelegateCommand ShareCommand
+        {
+            get
+            {
+                if (_shareCommand == null)
+                {
+                    _shareCommand = new DelegateCommand(() => GotToSharePage());
+                }
+                return _shareCommand;
+            }
+        }
+
+        private void GotToSharePage()
+        {
+            NavigationService.Navigate(typeof(Views.SharePage));
+        }
     }
 }
 

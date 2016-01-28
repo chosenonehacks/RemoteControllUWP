@@ -127,11 +127,15 @@
     <Compile Include="ViewModels\KeyboardPageViewModel.cs" />
     <Compile Include="ViewModels\AppListViewModel.cs" />
     <Compile Include="ViewModels\ListPageViewModel.cs" />
+    <Compile Include="ViewModels\SharePageViewModel.cs" />
     <Compile Include="Views\AppListPage.xaml.cs">
       <DependentUpon>AppListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ListPage.xaml.cs">
       <DependentUpon>ListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SharePage.xaml.cs">
+      <DependentUpon>SharePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TabHeader.xaml.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
@@ -242,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SharePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -204,6 +204,21 @@
   <data name="SettingsPivot.Header" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="ShareButton.Content" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="ShareMessageBack" xml:space="preserve">
+    <value> with use off Unofficial Netia Pilot app</value>
+  </data>
+  <data name="ShareMessageTop" xml:space="preserve">
+    <value>Just watching </value>
+  </data>
+  <data name="SharePageHeader.Content" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="ShareTextBox.Header" xml:space="preserve">
+    <value>Share what you watch:</value>
+  </data>
   <data name="ThemeTogleSwitch.Header" xml:space="preserve">
     <value>Change theme</value>
   </data>

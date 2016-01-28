@@ -438,6 +438,42 @@ namespace RemoteController.Services.RemoteController
             return appList;
         }
 #endregion
+
+        public async Task<TvChannels> GetCurrentChanellInfoAsync()
+        {
+            TvChannels currentChannel = new TvChannels();
+            string address = String.Empty;
+
+            if (!string.IsNullOrWhiteSpace(_ipAddress))
+            {
+                //http://192.168.1.4/Live/Channels/getCurrent
+                address = "http://" + _ipAddress + "/Live/Channels/getCurrent";
+
+                var uri = new Uri(address, UriKind.Absolute);
+                using (System.Net.Http.HttpClient client = new System.Net.Http.HttpClient())
+                {
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Encoding", "gzip, deflate");
+                    client.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Charset", "UTF-8");
+                    try
+                    {
+                        System.Net.Http.HttpResponseMessage response = await client.GetAsync(uri);
+                        response.EnsureSuccessStatusCode();
+                        var data = await response.Content.ReadAsStringAsync();
+                        currentChannel = JsonConvert.DeserializeObject<TvChannels>(data);
+
+                        return currentChannel;
+                    }
+                    catch (Exception)
+                    {
+
+                        return currentChannel;
+                    }
+                }
+            }
+            return currentChannel;
+        }
     }
 }
 

@@ -51,10 +51,17 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <controls:PageHeader BackButtonVisibility="Collapsed" Content="~PlaceHolerPilot" Frame="{x:Bind Frame, Mode=OneWay}" x:Uid="MainPageHeader">
+        <controls:PageHeader BackButtonVisibility="Collapsed" Content="~PlaceHolderPilot" Frame="{x:Bind Frame, Mode=OneWay}" x:Uid="MainPageHeader">
             <Interactivity:Interaction.Behaviors>
                 <Behaviors:EllipsisBehavior Visibility="Collapsed" />
             </Interactivity:Interaction.Behaviors>
+            <controls:PageHeader.PrimaryCommands>
+                <AppBarButton  Command="{Binding ShareCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </controls:PageHeader.PrimaryCommands>
         </controls:PageHeader>
 
         <!--  #region content  -->
