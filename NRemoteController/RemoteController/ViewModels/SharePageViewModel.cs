@@ -25,7 +25,7 @@ namespace RemoteController.ViewModels
 
         public SharePageViewModel()
         {
-            Windows.ApplicationModel.DataTransfer.DataTransferManager.GetForCurrentView().DataRequested += SharePage_DataRequested;
+            
 
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
@@ -42,16 +42,39 @@ namespace RemoteController.ViewModels
             set { Set(ref _shareText, value); }
         }
 
+        private string _shareTarget;
+        public string ShareTarget
+        {
+            get { return _shareTarget; }
+            set { Set(ref _shareTarget, value); }
+        }
+
+        private bool _startedSharing;
+        public bool StartedSharing
+        {
+            get { return _startedSharing; }
+            set { Set(ref _startedSharing, value); }
+        }
+
         public string IpAddress => _manager.Load<string>("IpSetting", String.Empty);
 
         public override async void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.GetForCurrentView().DataRequested += SharePage_DataRequested;
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.GetForCurrentView().TargetApplicationChosen += SharePageViewModel_TargetApplicationChosen;
+            
+
             currentTvChannel = await _remoteController.GetCurrentChanellInfoAsync();
 
             var messageTop = _loader.GetString("ShareMessageTop");
             var messageBack = _loader.GetString("ShareMessageBack");
 
             ShareText = messageTop + currentTvChannel.Name + messageBack;
+        }
+
+        private void SharePageViewModel_TargetApplicationChosen(DataTransferManager sender, TargetApplicationChosenEventArgs args)
+        {
+            ShareTarget = args.ApplicationName;
         }
 
         public override Task OnNavigatedFromAsync(IDictionary<string, object> state, bool suspending)
@@ -66,6 +89,7 @@ namespace RemoteController.ViewModels
             {
                 args.Request.Data.SetText(ShareText);
                 args.Request.Data.Properties.Title = Windows.ApplicationModel.Package.Current.DisplayName;
+                
             }
             else
             {
@@ -76,19 +100,13 @@ namespace RemoteController.ViewModels
         private DelegateCommand _shareCommand;
         public DelegateCommand ShareCommand
         {
-            get
-            {
-                if (_shareCommand == null)
-                {
-                    _shareCommand = new DelegateCommand(() => Share());
-                }
-                return _shareCommand;
-            }
+            get { return _shareCommand ?? (_shareCommand = new DelegateCommand(Share)); }
         }
 
         private void Share()
         {
             Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
+            
         }
 
 

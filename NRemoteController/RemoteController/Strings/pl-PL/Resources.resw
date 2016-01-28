@@ -208,10 +208,10 @@
     <value>Podziel się</value>
   </data>
   <data name="ShareMessageBack" xml:space="preserve">
-    <value> przy uzyciu aplikacji Unofficial Netia Pilot</value>
+    <value> przy użyciu aplikacji Unofficial Netia Pilot</value>
   </data>
   <data name="ShareMessageTop" xml:space="preserve">
-    <value>Własnie oglądam </value>
+    <value>Właśnie oglądam </value>
   </data>
   <data name="SharePageHeader.Content" xml:space="preserve">
     <value>Podziel się</value>
