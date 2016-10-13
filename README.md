@@ -1,4 +1,4 @@
-# RemoteControllUWP - Netia TV remote control
+# RemoteControllUWP - Netia TV remote control app
 
 This is a remote control Universal Windows Platform application for Netia television. You can control Netia TV with these app from your computer or smartphone, no need to use remote control.
 
