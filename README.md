@@ -12,6 +12,8 @@ URL: https://www.microsoft.com/store/apps/9nblggh6gxzx?ocid=badge
 
 Just play with it.
 
+![Unofficial Netia Pilot](http://programuje.net/wp-content/uploads/2015/12/wp_ss_20151204_0001-180x300.png)
+
 ## Contributing
 
 1. Fork it!
